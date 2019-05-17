@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button>click</button>
+  <script>
+    // let eve = new Event('coustome')
+    // let btn = document.getElementsByTagName('button')[0]
+    // btn.addEventListener('coustome', function () {
+    //   console.log(111)
+    // })
+    // btn.dispatchEvent(eve)
+    let eve = new CustomEvent('cou', {
+      detail: {
+        name: 'cc'
+      }
+    })
+    let btn = document.getElementsByTagName('button')[0]
+    btn.addEventListener('cou', function (e) {
+      console.log(e.detail)
+    })
+    btn.dispatchEvent(eve)
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // ...fs: 将函数组合成数组；
+    // Array.prototype.reduce 进行组合；
+    // p: 初始参数；
+    const pipe = (...fs) => p => fs.reduce((v, f) => f(v), p)
+    const pipe1 = function (...fs) {
+      return function (p) {
+        return fs.reduce((v, f) => {
+          return f(v)
+        }, p)
+      }
+    }
+    // 'Guo DongDong' --> 'guo-dongdong'
+    // 函数组合式写法
+    const toLowerCase = str => str.toLowerCase()
+    const join = (str, arr) => arr.join(str)
+    const split = (splitOn, str) => str.split(splitOn)
+
+    const toSlug = pipe(
+      toLowerCase,
+      split(' '),
+      join('_'),
+      encodeURIComponent,
+    );
+    console.log(toSlug('Guo DongDong'))
+  </script>
+</body>
+
+</html>

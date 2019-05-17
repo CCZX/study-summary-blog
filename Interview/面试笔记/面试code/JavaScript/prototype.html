@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function foo() {
+      var aa = 0
+      this.a = 1
+    }
+    foo.prototype.say = function () {
+      console.log(this)
+      console.log(this.a)
+      console.log(this.aa)
+    }
+    // foo.say()
+    let a = new foo()
+    a.say()
+    // foo.__proto__ == Function.prototype
+    // 
+  </script>
+</body>
+</html>

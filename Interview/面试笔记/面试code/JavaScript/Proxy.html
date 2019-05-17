@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let obj = {
+      name: 'Yvette',
+      hobbits: ['travel', 'reading'],
+      info: {
+        age: 20,
+        job: 'engineer'
+      }
+    };
+    let p = new Proxy(obj, {
+      get(target, key) {
+        console.log(`read is success`)
+        return Reflect.get(target, key)
+      },
+      set(target, key, val) {
+        if (key === 'length') { // 数组长度变化
+          return true
+        }
+        console.log(`set is success`)
+        return Reflect.set([target, key, val])
+      }
+    })
+  </script>
+</body>
+
+</html>

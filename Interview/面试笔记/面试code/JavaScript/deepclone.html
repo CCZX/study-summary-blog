@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function deepclone(obj) {
+      let res
+      if (typeof obj === "object" && obj !== null) {
+        res = Array.isArray(obj) ? [] : {}
+        for(let key in obj) {
+          res[key] = typeof obj[key] !== "object" ? obj[key] : deepclone(obj[key])
+        }
+      } else {
+        res = obj
+      }
+      return res
+    }
+  let obj = {
+    a: 1,
+    b: [1,2]
+  }
+  let res = deepclone(obj)
+  </script>
+</body>
+</html>

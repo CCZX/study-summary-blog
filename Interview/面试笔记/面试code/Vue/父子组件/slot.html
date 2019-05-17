@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+  <div id="app">
+    <child>
+      <p slot="3">3</p>
+      <p slot="2">2</p>
+      <p slot="1">1</p>
+    </child>
+  </div>
+
+  <script>
+    const child = {
+      template: `
+          <div>
+            <h1>子组件</h1>
+            <slot name="1"></slot>
+            <slot name="2"></slot>
+            <slot name="3"></slot>
+          </div>
+      `
+    }
+    const vue = new Vue({
+      el:'#app',
+      components: {
+        child
+      }
+    })
+  </script>
+</body>
+</html>

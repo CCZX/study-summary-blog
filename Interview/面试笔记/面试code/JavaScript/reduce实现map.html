@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // Array.prototype.myMap = function (cb) {
+    //   let index = 1
+    //   this.reduce((total, pre) => {
+    //     if (index === 1) {
+    //       console.log(total)
+    //       cb(total)
+    //       index = 2
+    //     }
+    //     console.log(pre)
+    //     cb(pre)
+    //   })
+    // }
+    // let arr = [1, 2, 3].myMap(function (item) {
+    //   return item + 1
+    // })
+
+      let arr = [1,2,3,4].reduce((pre, cur)=>{
+        // console.log(cur)
+        return pre + cur
+      },[])
+
+    Array.prototype.map1 = function (cb) {
+      if (typeof cb !== 'function') throw 'error'
+      let me = this
+      return me.reduce((acc, cur, index, me) => {
+        // console.log(cur)
+        let temp = cb(cur, index, me)
+        return acc.concat(temp)
+        // return temp
+      }, [])
+    }
+    let arr1 = [1,2,4].map1((item)=>{
+      return item * 10
+    })
+  </script>
+</body>
+
+</html>

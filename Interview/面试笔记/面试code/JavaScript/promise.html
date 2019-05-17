@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function timeout(ms) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(resolve, ms, 'done');
+      })
+    }
+    // let p = timeout(100).then((val) => {
+    //   console.log(val)
+    // })
+
+    const getJSON = function (url) {
+      const promise = new Promise(function (resolve, reject) {
+        const handler = function () {
+          if (this.readyState !== 4) {
+            return;
+          }
+          if (this.status === 200) {
+            resolve(this.response);
+          } else {
+            // console.log(this)
+            reject(new Error(this.statusText));
+          }
+        };
+        const client = new XMLHttpRequest();
+        client.open("GET", url);
+        client.onreadystatechange = handler;
+        client.responseType = "json";
+        client.setRequestHeader("Accept", "application/json");
+        client.send();
+
+      });
+
+      return promise;
+    };
+
+    // getJSON("/posts.json").then(function (json) {
+    //   console.log('Contents: ' + json);
+    // }, function (error) {
+    //   console.error('出错了', error);
+    // });
+
+
+    function MyPromise(constructor) {
+      let _self = this
+      this.status = "pending"
+      this.value = ""
+      function resolve(val) {
+        if (_self.status === "pending") {
+          _self.status = "resolve"
+          _self.value = val
+        }
+      }
+      function reject(val) {
+        if (_self.status === "pending") {
+          _self.status = "reject"
+          _self.value = val
+        }
+      }
+      constructor(resolve, reject)
+    }
+    MyPromise.prototype.then = function (resolve, reject) {
+      let _self = this
+      switch (_self.status) {
+        case "resolve":
+          resolve(_self.value)
+          break;
+        case "reject":
+          reject(_self.value)
+          break;
+        default:
+          break;
+      }
+    }
+    let  mp = new MyPromise(function (resolve, reject) {
+      reject(2)
+    }).then((val)=>{
+      console.log('success', val)
+    }, (e)=>{
+      console.log('err',e)
+    })
+  </script>
+</body>
+
+</html>

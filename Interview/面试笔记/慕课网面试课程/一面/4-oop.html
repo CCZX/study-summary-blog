@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // function Person1(name) {
+    //   this.name = name
+    // }
+    // class Person2 {
+    //   constructor(name) {
+    //     this.name = name
+    //   }
+    // }
+
+    function P2() {
+      this.name = 'p2'
+      this.arr = [1, 2, 3]
+    }
+    P2.prototype.say = function () {
+      console.log('say')
+    }
+
+    function C2() {
+      // P2.call(this)
+      this.age = 2
+    }
+    C2.prototype = P2.prototype
+    C2.prototype.constructor = C2
+    let s1 = new C2()
+    let s2 = new C2()
+
+
+
+    let inherit = (function () {
+      let F = function (){}
+      return function (Target, Oringin) {
+        F.prototype = Oringin.prototype
+        Target.prototype = new F()
+        Target.prototype.constructor = Target
+        Target.prototype.uber = Oringin.prototype
+      }
+    })()
+
+    function Pa() {
+      this.name = 'pa'
+    }
+    Pa.prototype.say = function () {
+      console.log('say')
+    }
+    Pa.prototype.num = 2
+
+    function Ch() {
+      this.age = 1
+    }
+    inherit(Ch, Pa)
+    let s3 = new Ch()
+  </script>
+</body>
+
+</html>

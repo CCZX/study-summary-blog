@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // let a = {
+    //   toString: (function () {
+    //     let i = 1
+    //     return function () {
+    //       console.log(i)
+    //       return i++
+    //     }
+    //   })()
+    // }
+    // let val = 1
+    // Object.defineProperty(window, 'a', {
+    //   get() {
+    //     console.log(this)
+    //     return val++
+    //   }
+    // })
+    //?
+    Object.defineProperty(window, 'a', {
+      get: (function () {
+        let val = 1
+        return function () {
+          return val++
+        }
+      })()
+    })
+    if (a == 1 && a == 2 && a == 3) {
+      console.log(1);
+    }
+  </script>
+</body>
+
+</html>

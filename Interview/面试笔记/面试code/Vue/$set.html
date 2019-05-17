@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item, index, key) in obj">{{item}}，{{index}}，{{key}}</li>
+    </ul>
+    <p>{{msg}}</p>
+    <button @click="handler">add</button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        obj: {
+          a: 1
+        },
+        msg: 123
+      },
+      methods: {
+        handler() {
+          // this.obj.b = 2
+          this.$set(this.obj, 'b', 2)
+        }
+      },
+    })
+  </script>
+</body>
+</html>

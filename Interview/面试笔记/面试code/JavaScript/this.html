@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // function foo(num) {
+    //   console.log("foo:"+num)
+    //   console.log(this.count++)
+    // }
+    // let data = {
+    //   count: 0
+    // }
+    // for(let i =0; i<10;i++) {
+    //   foo.call(data)
+    // }
+
+    // function foo1() {
+    //   var a = 2
+    //   this.bar()
+    // }
+    // function bar() {
+    //   console.log(this)
+    //   console.log(this.a)
+    // }
+    // foo1()
+
+      // function foo() {
+      //   "use strict"
+      //   console.log(this)
+      // }
+      // foo()
+      // "use strict"
+      // function foo() {
+        
+      //   console.log(this)
+      // }
+      // (function () {
+        
+      //   foo()
+      // })()
+        
+        // let obj2 = {
+        //   a:2,
+        //   foo1:foo1
+        // }
+        // let obj1 = {
+        //   a:1,
+        //   obj2:obj2
+        // }
+        // function foo1() {
+        //   console.log(this.a)
+        // }
+        // obj1.obj2.foo1()
+        // var a = 'window'
+        // let obj = {
+        //   a: 'obj',
+        //   foo() {
+        //     console.log(this.a)
+        //   }
+        // }
+        // let bar = obj.foo
+        // bar()
+        var a = 'window'
+        let obj = {
+          a: 'obj',
+          foo() {
+            console.log(this.a)
+          }
+        }
+        function doFoo(fn) {
+          fn()
+        }
+        doFoo(obj.foo)
+  </script>
+</body>
+</html>

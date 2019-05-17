@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    section {
+      margin-top: 30px;
+    }
+    .center {
+      /* background-color: aqua; */
+    }
+  </style>
+</head>
+<body>
+  <!-- position -->
+  <section class="layout position">
+    <style>
+      .layout.position .main>div {
+        min-height: 100px;
+      }
+      .left {
+        width: 300px;
+        position: absolute;
+        left: 0;
+        background-color: aqua
+      }
+      .right {
+        width: 300px;
+        position: absolute;
+        right: 0;
+        background-color: rebeccapurple;
+      }
+      .center {
+        margin: 0 300px;
+        background-color: black;
+      }
+    </style>
+    <article class="main">
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="center"></div>
+    </article>
+  </section>
+
+  <!-- float -->
+  <section class="layout float">
+      <style>
+        .layout.float .main>div {
+          min-height: 100px;
+        }
+        .left {
+          width: 300px;
+          float: left;
+          background-color: aqua
+        }
+        .right {
+          width: 300px;
+          float: right;
+          background-color: rebeccapurple;
+        }
+        .center {
+          margin: 0 300px;
+          background-color: black;
+        }
+      </style>
+      <article class="main">
+        <div class="left"></div>
+        
+        <div class="right"></div>
+        <div class="center"></div>
+      </article>
+  </section>
+
+  <!-- flex -->
+  <section class="layout flex">
+      <style>
+        .layout.flex .main>div {
+          min-height: 100px;
+        }
+        .main {
+          display: flex;
+        }
+        .left {
+          width: 300px;
+          
+          background-color: aqua
+        }
+        .right {
+          width: 300px;
+          background-color: rebeccapurple;
+        }
+        .center {
+          flex: 1;
+          background-color: black;
+        }
+      </style>
+      <article class="main">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+        
+      </article>
+    </section>
+
+  <!-- table -->
+  <section class="layout table">
+      <style>
+        .layout.table .main>div {
+          min-height: 100px;
+          display: table-cell;
+        }
+        .layout.table .main {
+          display: table;
+        }
+        .left {
+          width: 300px;
+          
+          background-color: aqua
+        }
+        .center {
+          background-color: black;
+        }
+        .right {
+          width: 300px;
+          background-color: rebeccapurple;
+        }
+        
+      </style>
+      <article class="main">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+      </article>
+  </section>
+</body>
+</html>

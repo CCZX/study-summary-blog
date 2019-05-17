@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let curry = function (fn, ...arg = []) {
+      let len = fn.length
+      return function (..._arg) {
+        let newArg = [...arg, ..._arg]
+        if (newArg.length < len) {
+           return curry.call(this, fn, newArg)
+        } else {
+          return fn.apply(this, newArg)
+        }
+      }
+    }
+  </script>
+</body>
+</html>

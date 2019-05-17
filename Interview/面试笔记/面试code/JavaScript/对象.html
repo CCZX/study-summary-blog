@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // let test = {
+    //   a:1,
+    //   b:2
+    // }
+    // Object.defineProperty(test, 'c', {
+    //   value:3,
+    //   writable:false,
+    //   configurable:false,
+    //   enumerable:false
+    // })
+    // console.log(Object.keys(test))
+    // console.log(Object.values(test))
+    // console.log(Object.entries(test))
+    // Object.getOwnPropertyNames
+
+    // let a = "foo"
+    // let obj = {
+    //   [a + '1']: 'hello',
+    //   [a + '2']: 'hello2'
+    // }
+
+    // function foo(params) {
+
+    // }
+    // let someFoo = foo
+    // let obj1 = {
+    //   someaaaFoo: foo
+    // }
+    // let myObj = {
+    //   a: 1
+    // }
+    // console.log(Object.getOwnPropertyDescriptor(myObj, 'a'))
+    // Object.defineProperty(myObj, 'b', {
+    //   value: 2,
+    //   writable: false,
+    //   configurable: true,
+    //   enumerable: true
+    // })
+
+    // let myObj1 = {
+    //   a: 1
+    // }
+    // Object.preventExtensions(myObj1)
+    // myObj1.b = 2
+    // myObj1.b // undefined
+    
+
+    // let data = {}
+    // Object.defineProperty(data, 'key', {
+    //   // value: 1,
+    //   enumerable: true,
+    //   configurable: false, // 不能再定义
+    //   get: function () {
+    //     // Dep.target &&  dep.addDep(Dep.target)
+    //     return this.value
+    //   },
+    //   set: function (newVal) {
+    //     if (newVal === this.value) {
+    //       return
+    //     }
+    //     console.log(`发生了变化${this.value}=>${newVal}`)
+    //     this.value = newVal
+    //     // dep.notify() // 通知所有订阅者
+    //   }
+    // })
+    let data = {}
+    Object.defineProperty(data, 'a', {
+      value: 1,
+      writable: true,
+      configurable: false,
+      enumerable: true
+    })
+  </script>
+</body>
+
+</html>

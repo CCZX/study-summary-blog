@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>父组件</h1>
+    <child :parentmsg="msg"></child>
+  </div>
+  <script>
+    const child = {
+      template: `
+          <div>
+            <h1>子组件</h1>
+            <h1 >这是子组件----------{{parentmsg}}</h1>
+          </div>
+      `,
+      props: ['parentmsg'],
+    }
+    const vue = new Vue({
+      el: "#app",
+      data: {
+        msg: '父组件中的数据'
+      },
+      components: {
+        child
+      }
+    })
+  </script>
+</body>
+</html>

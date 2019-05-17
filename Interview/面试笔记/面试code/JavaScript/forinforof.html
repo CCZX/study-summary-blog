@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  
+  <script>
+    // let arr = [1,2,3,4,5,6]
+    // arr.name = 'test'
+    // for (const key in arr) {
+    //   // console.log(`key: ${key}-val${arr[key]}`)
+    //   console.log(typeof key)
+    // }
+    // let str = '123'
+    // let arr = [1,2,3,4]
+    // for (const i of str) {
+    //   console.log(str[i])
+    // }
+    // for (const i of arr) {
+    //   console.log(arr[i])
+    // }
+    // var arr = ['a', 'b', 'c', 'd'];
+
+    // for (let a in arr) {
+    //   console.log(a); // 0 1 2 3
+    // }
+
+    // for (let a of arr) {
+    //   console.log(a); // a b c d
+    // }
+
+    // let arr1 = [
+    //   [0, 'a'],
+    //   [1, 'b']
+    // ]
+    // for (let [a, b] of arr1) {
+    //   console.log(a, b); // a b c d
+    // }
+
+    // var es6 = new Map();
+    // es6.set("edition", 6);
+    // es6.set("committee", "TC39");
+    // es6.set("standard", "ECMA-262");
+    // for (var [name, value] of es6) {
+    //   console.log(name + ": " + value);
+    // }
+
+    // let obj = {
+    //   name: 'cc',
+    //   age: 12,
+    //   job: 'engineer',
+    //   [Symbol.iterator]() {
+    //     const self = this
+    //     const keys = Object.keys(self)
+    //     let index = 0
+    //     return {
+    //       netx() {
+    //         if (index < keys.length) {
+    //           return {
+    //             value: self[keys[index++]],
+    //             done: false
+    //           }
+    //         } else {
+    //           return {
+    //             value: undefined,
+    //             done: true
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    // for (let item of obj) {
+    //   console.log(item); //Yvette  18  engineer
+    // }
+    //如为对象添加Iterator 接口;
+    let obj = {
+      name: "Yvette",
+      age: 18,
+      job: 'engineer',
+      [Symbol.iterator]() {
+        const self = this;
+        const keys = Object.keys(self);
+        let index = 0;
+        return {
+          next() {
+            if (index < keys.length) {
+              return {
+                value: self[keys[index++]],
+                done: false
+              };
+            } else {
+              return {
+                value: undefined,
+                done: true
+              };
+            }
+          }
+        };
+      }
+    };
+
+    for (let item of obj) {
+      console.log(item); //Yvette  18  engineer
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // call
+    Function.prototype.myCall = function (ctx = window, ...arg) {
+      if (typeof this !== "function") return
+      ctx.fn = this
+      let res = ctx.fn(...arg)
+      delete ctx.fn
+      return res
+    }
+    // apply 
+    Function.prototype.myApply = function (ctx = window, arg) {
+      if (typeof this !== "function") return
+      ctx.fn = this
+      if(!Array.isArray(arg)) {
+        throw new Error('需要数组')
+      }
+      let res = ctx.fn(...arg)
+      delete ctx.fn
+      return res
+    }
+    // bind
+    Function.prototype.myBind = function (target) {
+      
+    }
+    let obj = {
+      a: 1
+    }
+    var a = 6
+    function foo(name,age) {
+      b = 5
+      console.log(this.a)
+      console.log(name)
+      console.log(age)
+    }
+    foo.myApply(obj,[1],2)
+    Function.prototype.age = 2
+    foo.prototype.test = 1
+    // obj.prototype.name = 1
+
+    function bar(arg) {
+      console.log(...arg)
+    }
+    bar([1,2,3,4,6,5])
+  </script>
+</body>
+
+</html>

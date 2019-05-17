@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+  <div id="app">
+    <child @p-handler="pHandler"></child>
+  </div>
+  <script>
+    const child = {
+      template: `
+          <div>
+            <h1>子组件</h1>  
+            <button @click="cHandler">子组件按钮</button>
+          </div>
+      `,
+      data() {
+        return {
+          msg: '我是儿子的信息'
+        }
+      },
+      methods: {
+        cHandler() {
+          this.$emit('p-handler', this.msg)
+        }
+      }
+    }
+    const vue = new Vue({
+      el: "#app",
+      data: {
+        msg: '我是爸爸'
+      },
+      components: {
+        child
+      },
+      methods: {
+        pHandler(data) {
+          console.log('这是父组件的事件处理函数')
+          console.log(data)
+        }
+      },
+    })
+  </script>
+</body>
+</html>

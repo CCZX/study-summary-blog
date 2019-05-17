@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      display: flex;
+      flex-wrap: no-wrap;
+    }
+    .box>div {
+      min-height: 200px;
+    }
+    .left {
+      width: 300px;
+      background-color: red;
+    }
+    .center {
+      background-color: yellow;
+      flex-grow: 1;
+    }
+    /* .center * {
+      word-wrap: break-word;
+      word-break: break-all;
+    } */
+    
+    .right {
+      width: 400px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="left"></div>
+    <div class="center">
+        <div>
+            <h2>flexbox解决方案</h2>
+        
+        </div>
+    </div>
+    <div class="right"></div>
+  </div>
+</body>
+</html>

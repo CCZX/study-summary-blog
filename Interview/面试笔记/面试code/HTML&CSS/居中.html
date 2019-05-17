@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .parent {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+      /* column-fill:  */
+      /* width: -moz-fit-content; */
+      /* width: -webkit-fit-content; */
+      /* width: fit-content; */
+      position: relative;
+      /* margin: 0 auto; */
+    }
+
+    .child {
+      position: absolute;
+      /* top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0; */
+      left: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 水平居中 -->
+  <!-- <div class="parent">
+    <div class="child"></div>
+  </div>
+
+  <section>
+    <style>
+      .box {
+        height: 300px;
+        width: 300px;
+        border: 1px solid red;
+      }
+      .box::after, .con {
+        height: 100px;
+        width: 100px;
+        border: 1px solid red;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .box::after {
+        content: '';
+        height: 100%;
+      }
+    </style>
+    <article>
+      <div class="box">
+        <div class="con"></div>
+      </div>
+    </article>
+  </section> -->
+
+  <section>
+    <style>
+      div {
+        height: 100px;
+        width: 100px;
+        border: 1px solid red;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      p {
+        display: inline-block;
+      }
+    </style>
+    <article>
+      <p>
+        12312312
+        <div></div>
+      </p>
+    </article>
+  </section>
+</body>
+
+</html>
