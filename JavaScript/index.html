@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    console.log("script start")
+
+    function foo(data) {
+      console.log(data)
+    }
+    setTimeout(() => {
+      console.log("out settimeout")
+    }, 1000);
+    // let p = new Promise(function (resolve, reject) {
+    //   console.log("promise start")
+    //   setTimeout(() => {
+    //     console.log("settimeout")
+    //     resolve("promise")
+    //   }, 200);
+    // })
+
+    function Pro(n) {
+      return new Promise(function (resolve, reject) {
+        console.log("promise start")
+        setTimeout(() => {
+          console.log("settimeout")
+          console.log(n)
+          resolve(n+1)
+        }, 200);
+      })
+    }
+    let p = Pro(1)
+    p.then(Pro).then(foo)
+    console.log("script end")
+    // script start,promise start,script end,out settimeout,settimeout,settimeout,promise
+  </script>
+</body>
+
+</html>
