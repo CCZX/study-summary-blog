@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var convert = function (s, numRows) {
+      if (s.length <= numRows) {  
+        return s
+      }
+      if (numRows === 1) {
+        return s
+      }
+      let arr = new Array(numRows)
+      let row = 0
+      let col = 0
+      let rowflag = "+"
+      let str = ""
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = []
+      }
+      for (let i = 0; i < s.length; i++) {
+        arr[row][col] = s[i]
+        if (rowflag == "+") {
+          row++
+          if (row > arr.length - 1) { // 1 2 3 4
+            rowflag = "-"
+            row = arr.length - 2
+            col++
+          }
+        } else {
+          row--
+
+          if (row < 0) {
+            rowflag = "+"
+            row = 1
+          } else {
+            col++
+          }
+
+        }
+      }
+      arr = [].concat(...arr)
+      let resArr = arr.filter((item) => {
+        return item != undefined
+      })
+      return resArr.join("")
+    };
+
+    // let a = convert("LEETCODEISHIRING", 4)
+    let b = convert("AB", 1)
+    // console.log(a)
+  </script>
+</body>
+
+</html>
