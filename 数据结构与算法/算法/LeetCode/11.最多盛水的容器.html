@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    
+    /*
+      1.使用对撞指针，一头一尾，然后计算所获得的面积
+    */  
+    let maxArea = function (arr) {
+      let max = 0
+      let i = 0 // 头指针
+      let j = arr.length-1 // 尾指针
+      while (i<j) {
+        max = Math.max(max, (Math.min(arr[i],arr[j]) * (j-i)))
+        arr[i] > arr[j] ? j -- : i ++
+      }
+      return max
+    }
+    let a = maxArea([1,8,6,2,5,4,8,3,7])
+  </script>
+</body>
+</html>

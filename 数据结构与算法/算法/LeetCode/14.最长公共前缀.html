@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    编写一个函数来查找字符串数组中的最长公共前缀。
+
+    如果不存在公共前缀，返回空字符串 ""。
+
+    示例 1:
+
+    输入: ["flower","flow","flight"]
+    输出: "fl"
+    示例 2:
+
+    输入: ["dog","racecar","car"]
+    输出: ""
+    解释: 输入不存在公共前缀。
+    说明:
+
+    所有输入只包含小写字母 a-z 。
+   -->
+  <script>
+    /*
+      思路：以数组第一个元素（f）为基准遍历后面的元素，只要后面存在一个元素第i位的值不等于f的第i位，就跳出循环
+      返回res，如果在一次循环中不存在一个元素的第i位与f的第i位不相等就让res加上f的第i位。
+    */
+    var longestCommonPrefix = function (strs) {
+      if(!strs) return false
+      let f = strs[0]
+      let res = ''
+      for (let i = 0; i < f.length; i++) {
+        for (let j = 1; j < strs.length; j++) {
+          if (f[i] !== strs[j][i]) {
+            return res
+          }
+        }
+        res += f[i]
+      }
+      return res
+    };
+    console.log(longestCommonPrefix(["flower","flow","flight"]))
+  </script>
+</body>
+
+</html>

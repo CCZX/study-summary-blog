@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      background-color: red;
+      /* width: 100px; */
+      /* height: 100px; */
+      padding: 50px;
+      margin-bottom: 10px;
+    }
+    img {
+      display: block;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="box"></div>
+  <!-- <img src="./图片懒加载/imgs/0.jpg" alt="" srcset="">
+  <img src="./图片懒加载/imgs/0.jpg" alt="" srcset="">
+  <img src="./图片懒加载/imgs/0.jpg" alt="" srcset=""> -->
+  <div>  <img src="./图片懒加载/imgs/0.jpg" alt="" srcset=""></div>
+  <div>  <img src="./图片懒加载/imgs/0.jpg" alt="" srcset=""></div>
+  <div>  <img src="./图片懒加载/imgs/0.jpg" alt="" srcset=""></div>
+  <script>
+    let div = document.querySelectorAll(".box")
+    div = [...div]
+    div.forEach(item => {
+      console.log(item.getBoundingClientRect())
+    })
+    let img = document.querySelectorAll("img")
+    img = [...img]
+    img.forEach(item => {
+      console.log(item.getBoundingClientRect())
+    })
+  </script>
+</body>
+</html> 

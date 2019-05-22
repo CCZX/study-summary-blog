@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .image-item {
+      display: block;
+      margin-bottom: 50px;
+      height: 400px;
+      width: 400px;
+      background-color: #cccccc;
+      /* height: 100%; */
+    }
+    .image-item.show {
+      animation: show 1s linear;
+    }
+    @keyframes show {
+      0% {filter: blur(3px)}
+      30% {filter: blur(1px)}
+      100% {filter: blur(0px)}
+    }
+  </style>
+</head>
+
+<body>
+  <img src="" alt="" class="image-item" data-src="./imgs/0.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/1.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/2.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/3.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/4.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/5.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/6.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/7.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/8.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/9.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/10.jpg">
+  <img src="" alt="" class="image-item" data-src="./imgs/11.jpg">
+  <script>
+    let debounce = function (fn, wait, immedate = false) {
+      let timer = null
+      return function (...arg) {
+        if (immedate) {
+          fn.apply(this, arg)
+          immedate = false
+        }
+        timer ? clearTimeout(timer) : ''
+        timer = setTimeout(() => {
+          fn.apply(this)
+        }, wait);
+      }
+    }
+    let viewHeight = document.documentElement.clientHeight || document.body.clientHeight
+    let imgs = document.querySelectorAll("img[data-src]")
+    imgs = [...imgs]
+    imgs.forEach(item => {
+      console.log(item.getBoundingClientRect())
+      lazy(item)
+    })
+    function lazy(item) {
+      let itemTop = item.getBoundingClientRect().top
+      if (itemTop < viewHeight && itemTop > 0) {
+        let src = item.getAttribute("data-src")
+        item.setAttribute("src", src)
+        item.classList.add("show")
+      }  
+      if (itemTop > viewHeight && item < 0) {
+        item.removeAttribute("src")
+      }
+    }
+    
+    // window.addEventListener("scroll", function () {
+    //   imgs.forEach(item => {
+    //     lazy(item)
+    //   })
+    // })
+    window.addEventListener("scroll", debounce(function () {
+      imgs.forEach(item => lazy(item))
+    }, 100, false))
+  </script>
+</body>
+
+</html>

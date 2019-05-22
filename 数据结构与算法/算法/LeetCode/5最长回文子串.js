@@ -12,6 +12,7 @@
 输出: "bb"
 */
 
+// 这是暴力破解的方式，用两层for循环来判断
 var longestPalindrome = function (s = "aba") {
   if (s === "") {
     return ""
@@ -54,38 +55,46 @@ console.log(longestPalindrome("accaaaaaaabzbqb")) //
 console.log(longestPalindrome())
 console.log(longestPalindrome(""))
 console.log(longestPalindrome("ac"))
-// console.log(longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth")) // 
+
+/* 
+动态规划 
 
 
-
-var longestPalindrome1 = function (s) {
-  let strArr = s.split('')
-  if (s) {
-    return findPalindrome(strArr, strArr.length)
-  } else {
-    return ""
+*/
+var longestPalindrome1 = function(s) {
+  let len = s.length;
+  let result;
+  let i,j,L;
+  let dp=Array(len).fill(0).map(x=>Array(len).fill(0));
+  console.log(dp);
+  if(len<=1){
+      return s
+  }
+  // 只有一个字符的情况是回文
+  for(i = 0;i<len;i++){
+      dp[i][i] = 1
+      result = s[i]
   }
 
-  function isPalindrome(strArr) {
-    return strArr.every((item, idx, s) => {
-      return s[idx] === s[Math.abs(s.length - idx) - 1]
-    })
-  }
+  // L是i和j之间的间隔数（因为间隔数从小到大渐增，所以大的间隔数总能包含小的间隔数）
+  // i     j
+  // abcdcba.length = L   所以 L = j-i+1; => j = i+L-1;
+  for ( L = 2; L <= len; L++) {
+      // 从0开始
+      for ( i = 0; i <= len - L; i++) {
+              j = i + L - 1;
+          if(L == 2 && s[i] == s[j]) {
+              dp[i][j] = 1;
+              result = s.slice(i, i + L);
+          }else if(s[i] == s[j] && dp[i + 1][j - 1] == 1) {
+              dp[i][j] = 1
+              result = s.slice(i, i + L);
+          }
 
-  function findPalindrome(arr, length) {
-    let longstr
-    let step = arr.length - length + 1
-    for (let i = 0; i < step; i++) {
-      let sliceArr = arr.slice(i, length + i)
-      if (isPalindrome(sliceArr)) {
-        longstr = sliceArr.join('')
       }
-    }
-    if (longstr) {
-      return longstr
-    } else {
-      length--
-      return findPalindrome(arr, length)
-    }
   }
-};
+  //console.log(result);
+  return result;
+}
+
+longestPalindrome1('123')
