@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，
+    使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。
+
+    注意：答案中不可以包含重复的三元组。
+
+    例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，
+
+    满足要求的三元组集合为：
+    [
+      [-1, 0, 1],
+      [-1, -1, 2]
+    ]
+   -->
+  <script>
+    // 解法1：暴力破解时间复杂度为O(n3)
+    var threeSum1 = function (nums) {
+      let res = []
+      for (let i = 0; i < nums.length - 2; i++) {
+        for (let j = i+1; j < nums.length - 1; j++) {
+          for (let k = j+1; k < nums.length; k++) {
+            if (nums[i] + nums[j] + nums[k] === 0) {
+              res.push([nums[i], nums[j], nums[k]])
+            }
+          }
+        }
+      }
+      return res
+    }
+    console.log(threeSum1([-1, 0, 1, 2, -1, -4]))
+    // 解法2：类似于两数之和，时间复杂度为O(n2)
+    var threeSum2 = function (nums) {
+      if (!nums || nums.length < 3) {
+        return false
+      }
+      if (nums.length === 3) {
+        if (num[0] + nums[1] + nums[2] === 0) {
+          return nums
+        } else {
+          return false
+        }
+      }
+      let res = []
+      let map = new Map()
+      for (let i = 0; i < nums.length - 1; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+          if (map.has(nums[j])) {
+            res.push([nums[j]].concat(map.get(nums[j])))
+            map.delete(nums[j])
+          } else {
+            map.set(0 - nums[i] - nums[j], [nums[i], nums[j]])
+          }
+        }
+      }
+      return res
+    };
+    console.log(threeSum2([-1, 0, 1, 2, -1, -4]))
+    
+  </script>
+</body>
+
+</html>
