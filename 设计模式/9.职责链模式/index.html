@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let order500 = function (orderType, pay, stock) {
+      if (orderType === 1 && pay === true) {
+        console.log(500)
+      } else {
+        order200(orderType, pay, stock)
+      }
+    }
+    let order200 = function (orderType, pay, stock) {
+      if (orderType === 2 && pay === true) {
+        console.log(200)
+      } else {
+        orderNomal(orderType, pay, stock)
+      }
+    }
+
+    let orderNomal = function (orderType, pay, stock) {
+      if (stock > 0) {
+        console.log("putomg")
+      } else {
+        console.log("buneg")
+      }
+    }
+  </script>
+</body>
+</html>

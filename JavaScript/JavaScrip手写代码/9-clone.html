@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>clone</title>
+</head>
+<body>
+  <script>
+    // 1.使用JSON.parse、JSON.stringify配合
+    let obj = {}
+    let newObj = JSON.parse(JSON.stringify(obj))
+
+    // 2.
+    function deepClone(obj) {
+      let res
+      if (typeof obj === "object") {
+        res = obj.constructor == Array ? [] : {}
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            res[key] = typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key]
+          }
+        }
+      } else {
+        res = obj
+      }
+      return res
+    }
+    // let obj1 = {a: 1}
+    // let res = deepClone(obj1)
+    // let arr = [1,2,3,4,5,6]
+    // let arrC = deepClone(arr)
+    let arr = [1,2,3,[4]]
+    let arr1 = deepClone(arr)
+    arr[3].push(5)
+  </script>
+</body>
+</html>

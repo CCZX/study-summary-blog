@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let Folder = function (name) {
+      this.name = name
+      this.files = []
+    }
+    Folder.prototype.add = function (file) {
+      this.files.push(file)
+    }
+    Folder.prototype.scan = function () {
+      console.log(`start scan floder ${this.name}`)
+      this.files.forEach(file => {
+        file.scan()
+      });
+    }
+
+    let File = function (name) {
+      this.name = name
+    }
+    File.prototype.add = function () {
+      throw new Error("文件下不能再添加文件")
+    }
+
+    File.prototype.scan = function () {
+      console.log(`start scan file ${this.name}`)
+    }
+
+    let folder1 = new Folder("文件夹1")
+    let folder2 = new Folder("文件夹2")
+    let folder3 = new Folder("文件夹3")
+
+    let file1 = new File("文件1")
+    let file2 = new File("文件2")
+    let file3 = new File("文件3")
+
+    folder1.add(file1)
+    folder2.add(file2)
+    folder3.add(file3)
+
+    folder1.add(folder2)
+    folder1.add(folder3)
+
+    folder1.scan()
+  </script>
+</body>
+</html>

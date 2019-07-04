@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let myImage = (function () {
+      let imgNode = document.createElement('img')
+      document.body.appendChild(imgNode)
+      return {
+        setSrc(src) {
+          imgNode.src = src
+        }
+      }
+    })()
+    let proxyImg = (function () {
+      let img = new Image
+      img.onload = function () {
+        myImage.setSrc(this.src)
+      }
+      return {
+        setSrc(src) {
+          myImage.setSrc('./test.png')
+          img.src = src
+        }
+      }
+    })()
+    // myImage.setSrc('https://inews.gtimg.com/newsapp_match/0/8039465775/0')
+    proxyImg.setSrc('https://inews.gtimg.com/newsapp_match/0/8039465775/0')
+
+
+
+    let mult = function (...arg) {
+      let a = 1
+      for (let i = 1; i < arg.length; i++) {
+        a = a * arg[i]
+      }
+      console.log(1111)
+      return a
+    }
+    let proxyMult = (function () {
+      let cache = {}
+      return function (...arg) {
+        let args = arg.join(',')
+        // for ( args in cache) {
+        //   if (cache.hasOwnProperty(args)) {
+        //     return cache[args]
+        //   }
+        // }
+        if (args in cache) {
+          return cache[args]
+        }
+        console.log(this)
+        return cache[args] = mult.apply(this, arg)
+      }
+    })()
+    console.log(proxyMult(1,2,2))
+    console.log(proxyMult(1,2,2))
+    console.log(proxyMult(1,2,2))
+    console.log(proxyMult(1,2,2))
+    console.log(proxyMult(1,2,2))
+  </script>
+</body>
+
+</html>

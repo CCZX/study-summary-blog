@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组合模式</title>
+</head>
+<body>
+  <button id="btn">click</button>
+  <script>
+    let MacroCommand = function () {
+      return {
+        commandList: [],
+        add(command) {
+          this.commandList.push(command)
+        },
+        execute() {
+          this.commandList.forEach(command => {
+            command.execute && command.execute()
+          });
+        }
+      }
+    }
+    let open1 = {
+      execute() {
+        console.log(1)
+      }
+    }
+    let open2 = {
+      execute() {
+        console.log(2)
+      }
+    }
+    let open3 = {
+      execute() {
+        console.log(3)
+      }
+    }
+    let open4 = {
+      execute() {
+        console.log(4)
+      }
+    }
+    let macroCommand = MacroCommand()
+    let macroCommand1 = MacroCommand() // 添加到组合对象中的组合对象
+    macroCommand.add(open1)
+    macroCommand.add(open2)
+    macroCommand1.add(open3)
+    macroCommand1.add(open4)
+    macroCommand.add(macroCommand1)
+
+    
+
+    let setCommand = (function (command) {
+      document.getElementById('btn').addEventListener('click', function () {
+        command.execute()
+      })
+    })(macroCommand)
+
+    // 在上面的这个例子中我们在组合对象中不仅添加了单个对象，也添加组合对象，但是我们只需调用最外面的组合对象，内部的单个对象和组合对象都会被递归调用
+  </script>
+</body>
+</html>

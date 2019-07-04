@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      如果一个对象要能够被for-of迭代循环，就需要具有iterator接口，
+      就必须在其 Symbol.iterator 的属性上部署遍历器生成方法(或者原型链上的对象具有该方法)
+    */
+    let obj = {
+      name: 'cc',
+      age: 21,
+      [Symbol.iterator]() {
+        const self = this
+        const keys = Object.keys(self)
+        let index = 0
+        return {
+          next() {
+            if (index < keys.length) {
+              return {
+                value: self[keys[index++]],
+                done: false
+              }
+            } else {
+              return {
+                value: undefined,
+                done: true
+              }
+            }
+          }
+        }
+      }
+    }
+    for (const iterator of obj) {
+      console.log(iterator)
+    }
+  </script>
+</body>
+</html>

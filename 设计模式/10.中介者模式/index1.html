@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Player(name, teamColor) {
+      this.name = name
+      this.teamColor = teamColor
+      this.state = "alive"
+    }
+    Player.prototype.win = function () {
+      console.log(`${this.name}won`)
+    }
+    Player.prototype.lose = function () {
+      console.log(`${this.name}lost`)
+    }
+    Player.prototype.die = function () {
+      this.state = "dead"
+      playerDirector.ReceiveMessage('playerDead', this)
+    }
+    Player.prototype.remove = function () { // 移除玩家
+      playerDirector.ReceiveMessage('removePlayer', this)
+    }
+    Player.prototype.changeTeam = function (color) {
+      playerDirector.ReceiveMessage('changeTeam', this, color)
+    }
+
+    let playerFactory = function (name, teamColor) {
+      let newPlayer = new Player(name, teamColor)
+      playerDirector.ReceiveMessage('addPlayer', newPlayer)
+      return newPlayer
+    }
+
+    let playerDirector = (function () {
+      let players = {}
+      let operations = {}
+      operations.addPlayer = function (player) {
+        let teamColor = player.teamColor
+        players[teamColor] = players[teamColor] || []
+        players[teamColor].push(player)
+      }
+      operations.removePlayer = function (player) {
+        let teamColor = player.teamColor
+        let teamPlayers = players[teamColor] || []
+        teamPlayers.forEach((item, index) => {
+          if (item === player) {
+            teamPlayers.splice(index, 1)
+          }
+        })
+      }
+      operations.changeTeam = function (player, newTeamColor) {
+        operations.removePlayer(player)
+        player.teamColor = newTeamColor
+        operations.addPlayer(player)
+      }
+      operations.playerDead = function (player) {
+        let teamColor = player.teamColor
+        let teamPlayers = players[teamColor]
+        let all_dead = true
+        all_dead = teamPlayers.every(item => {
+          return item.state === "dead"
+        })
+        if (all_dead === true) {
+          teamPlayers.forEach(item => {
+            item.lose()
+          })
+          for(var color in players) {
+            if (color !== teamColor) {
+              let teamPlayers = players[color]
+              teamPlayers.forEach(item => {
+                item.win()
+              })
+            }
+          }
+        }
+      }
+      let ReceiveMessage = function () {
+        let message = Array.prototype.shift.call(arguments)
+        operations[message].apply(this, arguments)
+      }
+      return {
+        ReceiveMessage: ReceiveMessage
+      }
+    })()
+
+    let player1 = playerFactory('A', 'red')
+    let player2 = playerFactory('B', 'red')
+    let player3 = playerFactory('C', 'red')
+    let player4 = playerFactory('D', 'red')
+
+    let player5 = playerFactory('E', 'blue')
+    let player6 = playerFactory('F', 'blue')
+    let player7 = playerFactory('G', 'blue')
+    let player8 = playerFactory('H', 'blue')
+  </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn1">1</button>
+  <button id="btn2">2</button>
+  <button id="btn3">3</button>
+  <script>
+    let btn1 = document.getElementById('btn1')
+    let btn2 = document.getElementById('btn2')
+    let btn3 = document.getElementById('btn3')
+    /* 
+    定义setCommand函数，负责给按钮上安装命令，在点击按钮之后会执行某个命令，
+    执行命令的动作被约定为调用command上的execute方法，
+    */
+    
+    /*
+    
+    * let setCommand = function (btn, command) {
+      btn.onclick = function () {
+        command.execute()
+      }
+    }
+
+    // 按钮的行为
+    let MenuBar = {
+      refresh: function () {
+        console.log('refresh')
+      }
+    }
+    let SubMenu = {
+      add: function () {
+        console.log('add')
+      },
+      del: function () {
+        console.log('del')
+      }
+    }
+    // 将上面的行为封装在命令类中
+    let RefreshMenuBarCommand = function (receiver) {
+      this.receiver = receiver
+    }
+    RefreshMenuBarCommand.prototype.execute = function () {
+      this.receiver.refresh()
+    }
+    let AddSubMenuCommand = function (receiver) {
+      this.receiver = receiver
+    }
+    AddSubMenuCommand.prototype.execute = function () {
+      this.receiver.add()
+    }
+    let DelSubMenuCommand = function (receiver) {
+      this.receiver = receiver
+    }
+    DelSubMenuCommand.prototype.execute = function () {
+      this.receiver.del()
+    }
+    // 把命令接收者传到command对象中，并把command对象安装到button上
+    let refreshMenuBarCommand = new RefreshMenuBarCommand(MenuBar)
+    let addSubMenuCommand = new AddSubMenuCommand(SubMenu)
+    let delSubMenuCommand = new DelSubMenuCommand(SubMenu)
+    setCommand(btn1, refreshMenuBarCommand)
+    setCommand(btn2, addSubMenuCommand)
+    setCommand(btn3, delSubMenuCommand)
+    */
+
+    // javascript中的命令模式
+    let setCommand = function (btn, command) {
+      btn.onclick = function () {
+        command.execute()
+      }
+    }
+    let MenuBar = {
+      refresh: function () {
+        console.log('refresh')
+      }
+    }
+    let RefreshMenuBarCommand = function (receiver) {
+      return {
+        execute: function () {
+          receiver.refresh()
+        }
+      }
+    }
+    let refreshMenuBarCommand = RefreshMenuBarCommand(MenuBar)
+    setCommand(btn1, refreshMenuBarCommand)
+  </script>
+</body>
+</html>

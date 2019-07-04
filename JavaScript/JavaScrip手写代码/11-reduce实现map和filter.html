@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reduce To Map</title>
+</head>
+<body>
+  <script>
+    /*
+      reduce接受2个参数，第一个是回调函数，第二个是传递给回调函数的初始值。
+      回调函数接受四个参数第一个参数（必须）表示初始值或者计算的返回值，
+      第二个参数（必须）表示当前元素，第三个元素（非必需）表示当前元素索引，第四个元素（非必需）表示当前数组。
+
+      如果没有传递初始值回调函数的第一个参数默认为数组的第一个元素，第二个参数默认为数组的第二个元素，如果传入了初始值
+      回调函数的第一个参数就为传入的初始值，第二个参数为数组的第一个元素。
+    */
+    
+
+    Array.prototype.myMap = function (cb) {
+      if( typeof cb !== "function" ) {
+        throw new Error("error")
+      }
+      return this.reduce((total, pre, index, arr) => {
+        let temp = cb(pre, index, arr)
+        return total.concat(temp)
+      }, [])
+    }
+    let arr = [1,2].myMap((item) => {
+      return item + 1
+    })
+    let sun = [1,2,3].reduce((acc, pre, index, arr)=>{
+      return acc + pre
+    })
+    
+    Array.prototype.myFilter = function (cb) {
+      return this.reduce((pre, cur, index, arr) => {
+        cb(cur, index, arr) ? pre.push(cur) : ''
+        return pre
+      }, [])
+    }
+    let farr = [1,2,3,4].myFilter((item) => {
+      return item >= 3
+    })
+  </script>
+</body>
+</html>

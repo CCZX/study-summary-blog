@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 扁平化一层
+    let arr1 = [0,1,[2,3,[4]]]
+    let flat1 = function (arr) {
+      return arr.reduce((pre, cur, index) => {
+        return pre.concat(cur)
+      }, [])
+    }
+    function flat2(arr) {
+      return [].concat(...arr)
+    }
+
+    // 无限扁平化
+    function flat3(arr) {
+      return arr.reduce((pre, cur, index) => {
+        return Array.isArray(cur) ? pre.concat(flat3(cur)) : pre.concat(cur)
+      }, [])
+    }
+  </script>
+</body>
+</html>

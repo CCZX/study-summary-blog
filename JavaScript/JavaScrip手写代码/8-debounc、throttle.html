@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="inp">
+  <button id="btn">1</button>
+  <script>
+    // 防抖函数
+    function debounce(fn, wait = 500, immediate) {
+      let timer
+      return function () {
+        if (immediate) {
+          fn.apply(this, arguments)
+          immediate = false
+        }
+        if (timer) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+          fn.apply(this, arguments)
+        }, wait);
+      }
+    }
+    let inp = document.querySelector('#inp')
+    function foo(e) {
+      console.log(e.target.value)
+    }
+    // inp.oninput = debounce(foo, 1000, true)
+    inp.addEventListener('input', debounce(foo, 1000, true))
+
+    // 节流函数
+    function throttle(fn, wait) {
+      let preTime = Date.now()
+      return function () {
+        const agrs = arguments
+        const nowTime = Date.now()
+        if (nowTime - preTime > wait) {
+          fn.apply(this, agrs)
+          preTime = Date.now()
+        }
+      }
+    }
+    let btn = document.querySelector('#btn')
+    function bar(e) {
+      console.log(e.target.innerText)
+      e.target.innerText++
+    }
+    btn.addEventListener('click', throttle(bar, 5000))
+  </script>
+</body>
+</html>

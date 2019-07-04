@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 封装一个泡咖啡和泡茶的父类Beverage
+    let Beverage = function () {
+      
+    }
+    Beverage.prototype.boilWater = function () {
+      console.log("煮开水")
+    }
+    Beverage.prototype.brew = function () {
+      
+    }
+    Beverage.prototype.pourInCup = function () {
+      
+    }
+    Beverage.prototype.addCondiments = function () {
+      
+    }
+    Beverage.prototype.init = function () {
+      
+    }
+
+    let Coffee = function () {
+      
+    }
+    Coffee.prototype = new Beverage()
+    
+  </script>
+</body>
+</html>

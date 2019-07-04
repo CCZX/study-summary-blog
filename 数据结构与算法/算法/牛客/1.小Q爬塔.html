@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    问题描述:小Q正在攀爬一座宝塔，这座宝塔很特别，塔总共有n层，但是两层之间的净高却不相同，所以造成小Q爬过每层的时间也不同。
+如果某一次高度为x，那么爬过这一层所需时间也就是x。小Q还会使用一种魔法，每使用一次可以让他向上跳1层或者两层，但是每次调后，
+ 必须至少爬一层才能接着使用魔法。小Q想用最短的时间上顶，希望你能告诉他
+n表示高度(n<=10000)
+x表示层差(1<=x<=100)
+问题分析:
+* p[i]表示到达第i层最短时间，并且到达第i层方式是爬
+* t[i]表示到达第i层最短时间，并且到达第i层方式是跳
+* 情况一:到达第i层的方式是爬
+* 那么到达第i-1层的方式可以是跳，也可以是爬，二者选一
+* p[i] = Math.min(p[i-1],t[i-1])+x;
+* 情况二:到达第i层的方式是跳
+* 那么可以从第i-1层起跳，也可以从i-2层起跳，并且到达i-1层和i-2层的方式只能是爬，所以二者选最小的
+* t[i] = Math.min(p[i-1],p[i-2])
+    */
+    
+    function Q(arr) {
+      let p = new Array(100).fill(0)
+      let t = new Array(100).fill(0)
+      for (let i = 1; i < arr.length; i++) {
+        p[i] = Math.min(p[i-1], t[i-1]) + arr[i]
+        if (i === 1) {
+          continue
+        }        
+        t[i] = Math.min(p[i-1], p[i-2])
+      }
+      console.log(p,t)
+      console.log(Math.min(p[arr.length], t[arr.length]))
+    }
+    Q([5,3,5,1,4,8])
+  </script>
+</body>
+</html>

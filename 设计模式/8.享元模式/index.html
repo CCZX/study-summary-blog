@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let id = 0
+    window.startUpload = function (uploadType, files) {
+      files.forEach(file => {
+        let uploadObj = new Upload(uploadType, file.fileName, file.fileSize)
+        uploadObj.init(id++)
+      });
+    }
+
+    let Upload = function (type, name, size) {
+      this.uploadType = type
+      this.fileName = name
+      this.fileSize = size
+      this.dom = null
+    }
+    Upload.prototype.init = function (id) {
+      let that = this
+      this.id = id
+      this.dom = document.createElement('div')
+      this.dom.innerHTML =
+        `
+                    <span>文件名：${this.fileName},文件大小：${this.fileSize}
+                    <button class="delFile">删除</button>
+                  `
+      this.dom.querySelector('.delFile').onclick = function () {
+        that.delFile()
+      }
+      document.body.appendChild(this.dom)
+    }
+    Upload.prototype.delFile = function () {
+      if (this.fileSize < 3000) {
+        return this.dom.parentNode.removeChild(this.dom)
+      }
+      if (window.confirm(`are you sure delete file of ${this.fileName}`)) {
+        return this.dom.parentNode.removeChild(this.dom)
+      }
+    }
+
+    startUpload('plugin', [{
+      fileName: 1,
+      fileSize: 1000,
+    },{
+      fileName: 2,
+      fileSize: 2000,
+    },{
+      fileName: 3,
+      fileSize: 3000,
+    },{
+      fileName: 4,
+      fileSize: 4000,
+    }])
+  </script>
+</body>
+
+</html>

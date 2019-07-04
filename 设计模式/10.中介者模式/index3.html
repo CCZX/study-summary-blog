@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    players = []
+    class Player {
+      constructor(name, teamColor) {
+        this.partners = []
+        this.enemies = []
+        this.state = "lived"
+        this.name = name
+        this.teamColor = teamColor
+      }
+      win() {
+        console.log(`winer:${this.name}`)
+      }
+      lose() {
+        console.log(`loser:${this.name}`)
+      }
+      die() {
+        let all_die = true
+        this.state = "dead"
+        all_die = this.partners.every(partner => {
+          return partner.state === "dead"
+        })
+        if (all_die === true) {
+          this.lose()
+          this.partners.forEach(partner => {
+            partner.lose()
+          });
+          this.enemies.forEach(enemy => {
+            enemy.win()
+          })
+        }
+      }
+    }
+
+    let playerFactory = function (name, teamColor) {
+      let newPlayer = new Player(name, teamColor)
+      for(let i = 0, player; player = players[i++];) {
+        if (player.teamColor === newPlayer.teamColor) {
+          player.partners.push(newPlayer)
+          newPlayer.partners.push(player)
+        } else {
+          player.enemies.push(newPlayer)
+          newPlayer.enemies.push(player)
+        }
+      }
+      players.push(newPlayer)
+      return newPlayer
+    }
+
+    let player1 = playerFactory("A", "red")
+    let player2 = playerFactory("B", "red")
+    let player3 = playerFactory("C", "red")
+    let player4 = playerFactory("D", "red")
+
+    let player5 = playerFactory("E", "blue")
+    let player6 = playerFactory("F", "blue")
+    let player7 = playerFactory("G", "blue")
+    let player8 = playerFactory("H", "blue")
+  </script>
+</body>
+
+</html>

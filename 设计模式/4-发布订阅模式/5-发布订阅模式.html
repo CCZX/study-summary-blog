@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body style="height:500px;">
+  <script>
+    document.body.addEventListener('click', function () {
+      alert(1)
+    }, false)
+    document.body.addEventListener('click', function () {
+      alert(2)
+    }, false)
+    document.body.addEventListener('click', function () {
+      alert(3)
+    }, false)
+    document.body.addEventListener('click', function () {
+      alert(4)
+    }, false)
+    // document.body.click()
+
+    // 2.发布订阅模式自定义事件
+    let publisher1 = {} // 发布者
+    publisher1.clientList = [] // 缓存列表，用于存放订阅者的回调函数
+    publisher1.listen = function (fn) {
+      this.clientList.push(fn)
+    }
+    publisher1.trigger = function () {
+      for (let i = 0; i < this.clientList.length; i++) {
+        const fn = this.clientList[i]
+        fn.apply(this, arguments)
+      }
+      // for(let i = 0, fn; fn = )
+    }
+    publisher1.listen(function (price, data) {
+      console.log(price)
+      console.log(data)
+    })
+    publisher1.listen(function (price, data) {
+      console.log(price)
+      console.log(data)
+    })
+    publisher1.trigger(20000, 183)
+    // let subscriber = 
+
+    // 3.改进
+    let publisher2 = {}
+    publisher2.clientList = {}
+    publisher2.listen = function (key, fn) { // key表示订阅者想要接收消息的关键字
+      if (!this.clientList[key]) {
+        this.clientList[key] = []
+      }
+      this.clientList[key].push(fn)
+    }
+    publisher2.trigger = function () {
+      let key = [].shift.call(arguments)
+      let fns = this.clientList[key]
+      if (!fns || fns.length == 0) {
+        return false
+      }
+      for(let i = 0, fn; fn = fns[i++];) {
+        fn.apply(this, arguments)
+      }
+    }
+
+    publisher2.listen('88', function (price, data) {
+      console.log('88',price)
+      console.log(data)
+    })
+    publisher2.listen('100', function (price, data) {
+      console.log(price)
+      console.log(data)
+    })
+    publisher2.trigger('88', 20000, 183)
+
+    // 4.通用的发布订阅模式
+    // 提取发布订阅功能
+    let event = {
+      clientList: {},
+      listen: function (key, fn) {
+        if (!this.clientList[key]) {
+          this.clientList[key] = []
+        }
+        this.clientList[key].push(fn)
+      },
+      trigger: function () {
+        let key = [].shift.call(arguments)
+        let fns = this.clientList[key]
+
+        if (!fns || fns.length == 0) {
+          return false
+        }
+
+        for(let i = 0, fn; fn = fns[i++];) {
+          fn.apply(this, arguments)
+        }
+      },
+      remove: function (key, fn) { // 取消订阅事件
+        let fns = this.clientList[key]
+        if (!fns) {
+          return false
+        }
+        if (!fn) { // 如果没有传入具体的回调函数，则表示取消key对应的所有事件
+          fns && (fns.length = 0)
+        } else {
+          for(let l = fns.length-1; l >=0; l--) {
+            let _fn = fns[l]
+            if (_fn === fn) {
+              fns.splice(l, 1)
+            }
+          }
+        }
+      }
+    }
+    // 给对象添加发布订阅
+    let installEvent = function (obj) {
+      for (const i in event) {
+        if (event.hasOwnProperty(i)) {
+          obj[i] = event[i]
+        }
+      }
+    }
+    // 使用
+    let publisher3 = {}
+    installEvent(publisher3)
+    publisher3.listen('88', function (price, data) {
+      console.log('88',price)
+      console.log(data)
+    })
+    publisher3.listen('100', function (price, data) {
+      console.log(price)
+      console.log(data)
+    })
+    publisher3.trigger('88', 20000, 183)
+
+    
+  </script>
+</body>
+
+</html>

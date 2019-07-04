@@ -10,14 +10,14 @@
 
 <body>
   <script>
-    console.log("script start")
+    // console.log("script start")
 
-    function foo(data) {
-      console.log(data)
-    }
-    setTimeout(() => {
-      console.log("out settimeout")
-    }, 1000);
+    // function foo(data) {
+    //   console.log(data)
+    // }
+    // setTimeout(() => {
+    //   console.log("out settimeout")
+    // }, 1000);
     // let p = new Promise(function (resolve, reject) {
     //   console.log("promise start")
     //   setTimeout(() => {
@@ -28,17 +28,20 @@
 
     function Pro(n) {
       return new Promise(function (resolve, reject) {
-        console.log("promise start")
+        // console.log("promise start")
         setTimeout(() => {
-          console.log("settimeout")
-          console.log(n)
+          // console.log("settimeout")
+          // console.log(n)
           resolve(n+1)
-        }, 200);
+        }, 2000);
       })
     }
     let p = Pro(1)
-    p.then(Pro).then(foo)
-    console.log("script end")
+    p.then(x => {
+      console.log(x)
+    })
+    // p.then(Pro).then(foo)
+    // console.log("script end")
     // script start,promise start,script end,out settimeout,settimeout,settimeout,promise
   </script>
 </body>

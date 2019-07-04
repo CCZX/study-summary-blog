@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Node {
+      constructor(data) {
+        this.data = data
+        this.next = null
+      }
+    }
+
+    let node1 = new Node(1)
+    let node2 = new Node(2)
+    let node3 = new Node(3)
+    let node4 = new Node(4)
+    let node5 = new Node(5)
+    node1.next = node2
+    node2.next = node3
+    node3.next = node4
+    node4.next = node5
+
+    var removeNthFromEnd = function (head, n) {
+      let length = 0
+      let node = head
+      while (node) {
+        length++
+        node = node.next
+      }
+      n = length - n
+      node = head
+      if (n === 0) {
+        return node.next
+      } else {
+        while (n > 0) {
+          n--
+          node = node.next
+        }
+        node.next = node.next.next
+      }
+    };
+    var getIndex = function (head, index) {
+      let length = 0
+      let node = head
+      while (node) {
+        length++
+        node = node.next
+      }
+      node = head
+      if (index < 0 || index > length) {
+        return
+      }
+      let i = 0
+
+      while (i < index) {
+        i++
+        node = node.next
+      }
+      return node
+    }
+    console.log(getIndex(node1, 2))
+  </script>
+</body>
+
+</html>

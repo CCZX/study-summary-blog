@@ -58,8 +58,6 @@ console.log(longestPalindrome("ac"))
 
 /* 
 动态规划 
-
-
 */
 var longestPalindrome1 = function(s) {
   let len = s.length;
@@ -96,5 +94,23 @@ var longestPalindrome1 = function(s) {
   //console.log(result);
   return result;
 }
+longestPalindrome1('12321')
+// 动态规划
+function longestPalindrome2(s) {
+  let res = ""
+  let max = 0
+  let len = s.length
+  let dp=Array(len).fill(0).map(x=>Array(len).fill(0));
+  for (let i = 2; i < s.length; i++) {
+    for (let j = 0; j < i; j++) {
+      dp[i][j] = s[i] === s[j] && (i-j<=2 || dp[i-1][j+1])
+      if (dp[i][j] && max < i - j + 1) {
+        max = i - j + 1
+        res = s.substr(j, i - j + 1)
+      }
+    }
+  }
+  return {max, res}
+}
+console.log(longestPalindrome2('123211'))
 
-longestPalindrome1('123')

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  选择颜色：<select name="" id="colorSelect">
+    <option value="">请选择</option>
+    <option value="red">红色</option>
+    <option value="blue">蓝色</option>
+  </select>
+  请输入购买数量：<input type="text" id="numberInput">
+  你选择了颜色：<div class="colorInfo"></div>
+  你选择了数量：<div class="numberInfo"></div>
+  <button id="nextBtn" disabled="true">请选择手机颜色和购买数量</button>
+  <script>
+    let colorSelect = document.querySelector('#colorSelect')
+    let numberInput = document.querySelector('#numberInput')
+    let colorInfo = document.querySelector('#colorInfo')
+    let numberInfo = document.querySelector('#numberInfo')
+    let nextBtn = document.querySelector('#nextBtn')
+    let goods = {
+      "red": 3,
+      "blue": 6
+    }
+    colorSelect.onchange = function () {
+      console.log(this)
+      let color = this.value
+      let number = numberInfo.value
+      let stock = goods[color]
+
+      colorInfo.innerHTML = color
+      if (!color) {
+        nextBtn.disabled = true
+        nextBtn.innerHTML = "请选择手机颜色"
+        return
+      }
+      if (Number.isInteger(number - 0) && number > 0) {
+        nextBtn.disabled = true
+        nextBtn.innerHTML = "亲输入正确的数量"
+        return
+      }
+      if (number > stock) {
+        nextBtn.disabled = true
+        nextBtn.innerHTML = "库存不足"
+        return
+      }
+      nextBtn.disabled = false
+      nextBtn.innerHTML = "移防到库存"
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function curry(fn, args) {
+      var length = fn.length; // 函数参数长度
+      var args = args || [];
+      return function () {
+        newArgs = args.concat(Array.prototype.slice.call(arguments));
+        if (newArgs.length < length) {
+          return curry.call(this, fn, newArgs);
+        } else {
+          return fn.apply(this, newArgs);
+        }
+      }
+    }
+
+    function multiFn(a, b, c) {
+      return a * b * c;
+    }
+
+    var multi = curry(multiFn);
+
+    let a = multi(2)(3)(4)
+    let b = multi(2, 3, 4)
+    let c = multi(2)(3, 4)
+    let d = multi(2, 3)(4)
+
+    let multi1 = curry(multiFn, [2])
+    let e = multi1(3,4)
+
+  </script>
+</body>
+
+</html>
