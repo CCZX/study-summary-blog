@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function test() {
+      let obj = {}
+      this.say = () => {
+        console.log(111)
+      }
+      console.log(this)
+      // return obj
+    }
+    test()
+    new test()
+    let t1 = new test()
+    t1.say()
+
+
+    let aa = 1
+    class Node {
+      constructor() {
+        this.aa = aa
+      }
+    }
+    let node = new Node()
+
+
+    let myClass = (function () {
+      let private1 = new WeakMap()
+      let private2 = new WeakMap()
+    })()
+    
+
+
+//     (function (root) {
+//     var mEventPool = new WeakMap();
+//     class EventManager {
+//         constructor () {
+//             var pool = {};
+//             mEventPool.set(this, pool);
+//         }
+//         emit (event, ...args) {
+//             if (event === 'emit' || event === 'hook') return;
+//             var pool = mEventPool.get(this);
+//             if (!pool) return;
+//             pool = pool[event];
+//             if (!pool) return;
+//             pool.forEach((callback) => callback.apply(lifeController, args));
+//         }
+//         hook (event, callback) {
+//             if (event === 'emit' || event === 'hook') return;
+//             var pool = mEventPool.get(this);
+//             if (!pool) return;
+//             if (!pool[event]) {
+//                 pool[event] = new Set();
+//             }
+//             pool = pool[event];
+//             if (pool.has(callback)) return;
+//             pool.add(callback);
+//         }
+//     }
+//     root.EventManager = EventManager;
+// }) (window);
+  </script>
+</body>
+
+</html>

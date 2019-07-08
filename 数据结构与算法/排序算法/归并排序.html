@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>归并排序</title>
+</head>
+
+<body>
+  <!-- <script>
+    let mergeSort = function (list) {
+      let array = [...list]
+      if (array.length === 1) {
+        return array
+      }
+      let mid = Math.floor(array.length / 2)
+      let left = array.slice(0, mid)
+      let right = array.slice(mid, array.length)
+      return merge(mergeSort(left), mergeSort(right))
+    }
+    let merge = function (left, right) {
+      let result = []
+      let il = 0
+      let ir = 0
+      while (il < left.length && ir < right.length) {
+        if (left[il] < right[ir]) {
+          result.push(left[il++])
+        } else {
+          result.push(right[ir++])
+        }
+      }
+      while (il < left.length) {
+        result.push(left[il++])
+      }
+      while (ir < right.length) {
+        result.push(right[ir++])
+      }
+      return result
+    }
+
+    let list = [1, 23, 4, 23, 2, 342, 141, 12]
+    console.log(mergeSort(list))
+  </script> -->
+
+  <script>
+    function mergeSort(list) {
+      if (list.length === 1) {
+        return list
+      }
+      let mid = Math.floor(list.length / 2)
+      let left = list.slice(0 ,mid)
+      let right = list.slice(mid, list.length)
+      return merge(mergeSort(left), mergeSort(right))
+    }
+    function merge(leftArr, rightArr) {
+      let res = []
+      let left = 0
+      let right = 0
+      while (left < leftArr.length && right < leftArr.length) {
+        if (leftArr[left] < rightArr[right]) {
+          res.push(leftArr[left++])
+        } else {
+          res.push(rightArr[right++])
+        }
+      }
+      while (left < leftArr.length) {
+        res.push(leftArr[left++])
+      }
+      while (right < rightArr.length) {
+        res.push(rightArr[right++])
+      }
+      return res
+    }
+    let list = [1, 23, 4, 23, 2, 342, 141, 12]
+    let a = mergeSort(list)
+  </script>
+</body>
+
+</html>
