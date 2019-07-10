@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ch-zn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .wrap {
+      width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .box {
+      width: 3600px;
+      height: 300px;
+      position: relative;
+      /* transform: translateX(-600px); */
+    }
+    img {
+      /* position: absolute;
+      top: 0;
+      left: 0; */
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="box">
+      <img src="./img/1.jpg" alt="" srcset="">
+      <img src="./img/2.jpg" alt="" srcset="">
+      <img src="./img/3.jpg" alt="" srcset="">
+      <img src="./img/4.jpg" alt="" srcset="">
+      <img src="./img/5.jpg" alt="" srcset="">
+      <img src="./img/1.jpg" alt="" srcset="">
+    </div>
+  </div>
+  <script>
+    let $ = (el) => document.querySelector(el)
+    let $$ = (el) => document.querySelectorAll(el)
+    
+    let imgs = [...$$('.wrap .box img')]
+    let len = imgs.length
+
+    function move() {
+      
+    }
+    setInterval(move, 1000)
+  </script>
+</body>
+</html>

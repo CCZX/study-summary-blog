@@ -14,6 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 ```
+这样可以执行`npm run build`来进行打包。如果不设置该脚本命令可以通过`npx webpack`来进行打包
 
 **在webpack4.0以前必须在`webpack.config.js`配置文件中通过entry指定入口文件；webpack4.0默认将`./src/index.js`做为入口文件。**
 
@@ -49,7 +50,127 @@ module.exports = {
 }
 ```
 
-## 删除 dist 文件，再打包
+## module处理,使用loader
+默认webpack只能`.js`文件，所以针对不是`.js`的文件需要使用`loader`进行处理。
+**loader是一个文件加载器，能够加载资源文件并对资源文件进行处理。诸如编译、压缩等，最终一起打包到指定的文件中**
+- 如果处理一个文件使用多个loader，先执行最后一个loader
+- 第一个执行的loader以源码作为参数，下一个执行的loader以前一个处理后的结果作为参数，最后执行的loader会返回此模块的JavaScript源码。
+```javascript
+module: {
+  rules: [
+    {
+      test: /.\css$/,
+      use: ['style-loader', 'css-loader'] 
+    }
+  ]
+}
+```
+> 常见loader的作用：
+
+- `style-loade`: 将处理后的`CSS`文件包裹在`<style>`中，并插入到HTML文件中
+- postcss-loader
+
+> 其他的条件比如：
+- { include: Condition }:匹配特定条件。一般是提供一个字符串或者字符串数组，但这不是强制的。
+- { exclude: Condition }:排除特定条件。一般是提供一个字符串或字符串数组，但这不是强制的。
+- { and: [Condition] }:必须匹配数组中的所有条件
+- { or: [Condition] }:匹配数组中任何一个条件
+- { not: [Condition] }:必须排除这个条件
+```javascript
+module.exports = {
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        include: [
+          path.resolve(__dirname, "app/styles"),
+          path.resolve(__dirname, "vendor/styles")
+        ],
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  }
+  ...
+};
+
+```
+> 传递参数
+```javascript
+use: [
+  'style-loader',
+  {
+    loader: 'css-loader'
+  },
+  {
+    loader: 'less-loader',
+    options: {
+      noIeCompat: true // 通过这里传递参数
+    }
+  }
+];
+```
+这里的`'style-loader'`相当于`'{loader: 'style-loader'}'`的简写
+
+> sourceMap
+sourceMap可以在调试的时候看到文件最初的位置，有利于我们的开发与调试
+```javascript
+module.exports = {
+  ...
+  module: {
+    rules: [{
+      test: /\.scss$/,
+      use: [{
+        loader: "style-loader"
+      }, {
+        loader: "css-loader",
+        options: {
+          sourceMap: true
+        }
+      }, {
+        loader: "sass-loader",
+        options: {
+          sourceMap: true
+        }
+      }]
+    }]
+  }
+};
+```
+
+> PostCSS
+
+## 将样式抽离成一个单独的CSS文件
+
+> 抽离后就不能使用`style-loader`注入到HTML中了
+
+ **需要把`mode`设置为`production`**
+
+webpack4 开始使用： mini-css-extract-plugin插件, 1-3 的版本可以用： extract-text-webpack-plugin
+
+`npm install --save-dev mini-css-extract-plugin`
+
+## CSS、JS压缩
+
+> CSS
+webpack5 貌似会内置 css 的压缩，webpack4 可以自己设置一个插件即可。
+
+压缩 css 插件：optimize-css-assets-webpack-plugin
+
+安装
+
+npm i -D optimize-css-assets-webpack-plugin
+
+> JS
+压缩需要一个插件： uglifyjs-webpack-plugin, 此插件需要一个前提就是：mode: 'production'.
+
+安装
+
+npm i -D uglifyjs-webpack-plugin
+
+
+
+## 自动删除 dist 文件，再打包
 **安装插件：`npm install clean-webpack-plugin --save-dev`:**
 
 使用：
