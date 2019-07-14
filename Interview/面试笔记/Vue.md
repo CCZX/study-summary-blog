@@ -2,11 +2,11 @@
 
 MVVM分为View、Model、View-Model三层
 
-- View：代表UI层，负责数据的展示
+- View：代表**UI层**，负责数据的展示
 
-- Model：代表数据模型，数据以及业务逻辑都在这里定义
+- Model：代表**数据模型**，数据以及业务逻辑都在这里定义
 
-- View-Model：是连接View和Model的桥梁，负责监听View视图层和Model数据模型的变化，并控制View和Model的更新。
+- View-Model：是连接View和Model的桥梁，负责监听View视图层和Model数据模型的变化，并**控制View和Model的更新**。
 
   View和Model并没有直接的联系，是通过View-Model来进行通信的，当数据发生变化时，View-Model能监听到数据变化，并通知对应的视图层更新；当用户操作视图层时View-Model也能监听到视图层的变化，并通知数据模型更新，这种实现是通过一个[观察者模式](https://blog.csdn.net/weixin_43534005/article/details/89496690)来实现的。这样的数据流动就实现的双向数据绑定。
 
@@ -16,7 +16,7 @@ MVVM分为View、Model、View-Model三层
 
 **Vue响应式原理：**
 
-当创建组件的时候，遍历data上的每个属性，然后使用Object.definePropery的getter、setter劫持每个属性，监听数据的变化，在属性被访问和修改的时候通知变化。每个组件都有一个watcher实例，它在组件渲染的过程中记录依赖，当有依赖项的setter被调用的时候，会通知watcher重新计算，从而使相关的组件重新更新。
+当创建组件的时候，遍历data上的每个属性，然后使用Object.definePropery的getter、setter劫持每个属性，监听数据的变化，在属性被访问和修改的时候通知变化。每个组件都有一个**watcher实例**，它在组件渲染的过程中**记录依赖**，当有依赖项的setter被调用的时候，会通知watcher重新计算，从而使相关的组件重新更新。
 
 ## 3、SSR（服务端渲染）
 
@@ -139,7 +139,7 @@ let router = new VueRouter({
 
 ## 10、动态路由
 
-定义动态路由：在path属性加上`:/id`，例如：`/user/:id`
+定义动态路由：在path属性加上`/:id``，例如：``/user/:id`
 
 获取传递的参数：`this.$route.params.id`。	
 

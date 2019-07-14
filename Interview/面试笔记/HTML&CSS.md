@@ -194,6 +194,8 @@ div {
 
 ## 7、DOCTYPE
 
+DOCTYPE标签是一种标准通用标记语言的文档类型声明，它的目的是要告诉标准通用标记语言解析器，它应该使用什么样的文档类型定义（DTD）来解析文档。
+
 doctype用于声明文档类型和DTD（document type definiton）规范，用于检验文件的合法性
 
 - 严格模式：指浏览器按照W3C标准解析代码
@@ -205,3 +207,55 @@ doctype用于声明文档类型和DTD（document type definiton）规范，用�
 - XHTML 元素必须被关闭。
 - 标签名必须用小写字母。
 - XHTML 文档必须拥有根元素。
+
+## 9、行内元素
+行内元素不能设置宽高，（但是<img>例外，因为它是置换元素），在设置`position`和`display:flex`变为块级元素。
+行内元素不能上下margin可以设置左右，可以设置所有padding
+
+
+## 10、HTML5到底有什么？
+
+- 语义化标签
+- 增加表单类型，表单元素，表单属性
+- 音频视频
+- Canvas
+- SVG
+- 地理位置：window.navigator.geolocation
+- 拖放API：drag、drop
+- Web Worker
+- Web Storage
+- Web Socket
+
+## 11、CSS3
+
+- border-[image | radius |  shadow]
+- background-[clip | origin | size]
+- CSS渐变:[linear | radial]-gradient]
+- CSS3字体
+- transform和transition
+- CSS3动画：animation
+- flex布局
+- 媒体查询
+
+## 12、伪元素和伪类
+- 伪类本质上是为了弥补常规CSS选择器的不足，以便获取到更多信息；
+- 伪元素本质上是创建了一个有内容的虚拟容器；
+- CSS3中伪类和伪元素的语法不同；
+- 可以同时使用多个伪类，而只能同时使用一个伪元素；
+
+
+
+## 13、内联元素、块级元素
+
+
+
+> 内联
+
+`a,span,img`
+
+> 块级
+
+`div,p`
+
+- 内联元素不能设置上下margin
+- 使用position后内联元素变为块级元素

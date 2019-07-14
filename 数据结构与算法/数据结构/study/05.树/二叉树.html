@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    二叉搜索树(BST)是一种特殊的二叉树，它只允许左侧的节点存储的值比父节点存储的值小，右侧存储的值比父节点大
+   -->
+  <script>
+    function BitnarySearchTree() {
+      let Node = function (key) {
+        this.key = key
+        this.left = null
+        this.right = null
+      }
+      let root = null // 根节点
+
+      // 插入节点
+      let insertNode = (node, newNode) => {
+        if (newNode.key < node.key) {
+          if (!node.left) {
+            node.left = newNode
+          } else {
+            insertNode(node.left, newNode)
+          }
+        } eles {
+          if (!node.right) {
+            node.right = newNode
+          } else {
+            insertNode(node.right, newNode)
+          }
+        }
+      }
+      this.insert = (key) => {
+        let newNode = new Node(key)
+        !root ? root = newNode : insertNode(root, newNode)
+      }
+
+      // 中序遍历(从小到大)
+      
+    }
+  </script>
+</body>
+
+</html>

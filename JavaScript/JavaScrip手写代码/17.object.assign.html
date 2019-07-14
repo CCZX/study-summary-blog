@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function assign(target, source) {
+      for (const key in source) {
+        if (source.hasOwnProperty(key)) {
+          // !target[key] ? target[key] = source[key] : ''
+          // console.log(target[key])
+          // if (!target[key]) {
+          //   target[key] = source[key]
+          // }
+        }
+      }
+      return target
+    }
+    const object1 = {
+      a: 1,
+      b: 2,
+      c: 3
+    };
+    // const object2 = Object.assign({
+    //   c: 4,
+    //   d: 5
+    // }, object1);
+    const object2 = assign({
+      c: 4,
+      d: 5
+    }, object1);
+    const obj = Object.assign({a:1,b:2}, {a:3,b:4})
+
+    if (typeof Object.assign2 != 'function') {
+  // Attention 1
+  Object.defineProperty(Object, "assign2", {
+    value: function (target) {
+      'use strict';
+      if (target == null) { // Attention 2
+        throw new TypeError('Cannot convert undefined or null to object');
+      }
+
+      // Attention 3
+      var to = Object(target);
+        
+      for (var index = 1; index < arguments.length; index++) {
+        var nextSource = arguments[index];
+
+        if (nextSource != null) {  // Attention 2
+          // Attention 4
+          for (var nextKey in nextSource) {
+            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+              to[nextKey] = nextSource[nextKey];
+            }
+          }
+        }
+      }
+      return to;
+    },
+    writable: true,
+    configurable: true
+  });
+}
+  </script>
+</body>
+
+</html>
