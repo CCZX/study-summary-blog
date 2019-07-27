@@ -10,32 +10,39 @@
 
 <body>
   <script>
-    // let p1 = new Promise((resolve, reject) => {
-    //   throw new Error("error")
-    //   // resolve(1)
-    // })
-    // // .then(res => {
-    // //   console.log(res)
-    // //   return 'done'
-    // // })
-    // .then(res => res)
-    // .catch(err => {
-    //   // console.log(err)
-    //   return err
-    // })
-    function b() {
+    function foo() {
       return new Promise((resolve, reject) => {
-        setTimeout(resolve, 200)
-      });
+        // throw new Error("error")
+        resolve(1)
+      })
     }
 
-    function c() {
-      throw Error(10);
-    }
-    const a = () => {
-      b().then(() => c()).catch(err => console.log(err))
-    };
-    a();
+    // let p1 = new Promise((resolve, reject) => {
+    //   // throw new Error("error")
+    //   resolve(1)
+    // })
+    // .then(res => {
+    //   console.log(res)
+    //   return 'done'
+    // })
+    // .then(res => res)
+    // .catch(err => {
+    //   console.log(err)
+    //   return err
+    // })
+    // function b() {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(resolve, 200)
+    //   });
+    // }
+
+    // function c() {
+    //   throw Error(10);
+    // }
+    // const a = () => {
+    //   b().then(() => c()).catch(err => console.log(err))
+    // };
+    // a();
   </script>
 </body>
 

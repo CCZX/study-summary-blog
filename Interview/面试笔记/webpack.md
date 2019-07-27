@@ -239,6 +239,7 @@ module.exports = {
 
 ## 11.loader
 **webpack是基于Node的，所以webapck只能识别`.js`文件**，所以其他类型的文件需要合适的loader来进行转译。
+
 loader是文件加载器，能够加载资源文件，并对这些文件进行一些特定的处理，然后打包到指定的文件中。 **简单来说loader所作的事就是对webpack传入的字符串进行特定的修改**。
 
 - loader的执行顺序和代码书写的顺序是相反的，即：最后一个loader最先执行，第一个loader最后执行
