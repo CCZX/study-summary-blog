@@ -51,10 +51,10 @@ var longestPalindrome = function (s = "aba") {
   return max_arr[0] ? max_arr[0] : s[0]
 };
 
-console.log(longestPalindrome("accaaaaaaabzbqb")) // 
-console.log(longestPalindrome())
-console.log(longestPalindrome(""))
-console.log(longestPalindrome("ac"))
+// console.log(longestPalindrome("accaaaaaaabzbqb")) // 
+// console.log(longestPalindrome())
+// console.log(longestPalindrome(""))
+// console.log(longestPalindrome("ac"))
 
 /* 
 动态规划 
@@ -64,7 +64,7 @@ var longestPalindrome1 = function(s) {
   let result;
   let i,j,L;
   let dp=Array(len).fill(0).map(x=>Array(len).fill(0));
-  console.log(dp);
+  // console.log(dp);
   if(len<=1){
       return s
   }
@@ -91,10 +91,10 @@ var longestPalindrome1 = function(s) {
 
       }
   }
-  //console.log(result);
+  console.log(result);
   return result;
 }
-longestPalindrome1('12321')
+longestPalindrome1('1232112')
 // 动态规划
 function longestPalindrome2(s) {
   let res = ""
@@ -112,5 +112,33 @@ function longestPalindrome2(s) {
   }
   return {max, res}
 }
-console.log(longestPalindrome2('123211'))
+// console.log(longestPalindrome2('123211'))
+
+/**
+ * 中心扩散
+*/
+
+let maxstr = ""
+let max = 0
+function cneterExtend(s) {
+  if (s.length === 1) {
+    return s
+  }
+
+  for (let i = 0; i < s.length; i++) {
+   isPalindrome(s,i,i) 
+   isPalindrome(s,i,i+1) 
+  }
+}
+
+function isPalindrome(str, left, right) {
+  while (left >= 0 && right <= str.length && str[left] === str[right]) {
+    if (right - left + 1 > max) {
+      max = right - left + 1
+      maxstr = str.substring(left, right + 1)
+    }
+    left--
+    right++
+  }
+}
 

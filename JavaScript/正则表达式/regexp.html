@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log("123\"123")
+    var reg = /[123][456]/
+    var str = '1623'
+    str.match(reg)
+
+    var reg1 = /\b2/
+    var str1 = '12 23 34'
+
+    var reg2 = /(137|134)/
+    var aa = /\w/
+
+    var email = /([\d]+|[A-z]+)@([\d]+|[A-z]+).com/
+
+    var reg3 = /\w{4}/
+
+
+    var reg4 = /(\w)\1(\w)\2/
+    var str4 = "aabb"
+    let a =  str4.replace(reg4, function ($, $1, $2) {
+      console.log($)
+      return $2 + $2 + $1 + $1
+    })
+
+
+    function to(str) {
+      let arr = str.split('-')
+      for(let i = 1; i < arr.length; i++) {
+        let temp = arr[i]
+        let str0 = temp.charAt(0)
+        let upstr0 = str0.toLocaleUpperCase()
+        let res = upstr0 + temp.substr(1, temp.length - 1)
+        arr[i] = res
+      }
+      console.log(arr)
+      console.log(arr.join(""))
+    }
+    to('the-first-name')
+  </script>
+</body>
+</html>

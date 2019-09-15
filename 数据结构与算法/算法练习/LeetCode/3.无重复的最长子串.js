@@ -18,55 +18,55 @@
 解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
      请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
 */
-let lengthOfLongestSubstring = function (str) {
-  let arr = []
-  for (let i = 0; i < str.length; i++) {
-    let temp = str.split(str[i])
-    for (let j = 0; j < temp.length; j++) {
-      let max = temp[0]
-      if (temp[j].length > max.length) {
-        max = str[i] + temp[j]
-        arr.push(max)
-      }
-    }
+// let lengthOfLongestSubstring = function (str) {
+//   let arr = []
+//   for (let i = 0; i < str.length; i++) {
+//     let temp = str.split(str[i])
+//     for (let j = 0; j < temp.length; j++) {
+//       let max = temp[0]
+//       if (temp[j].length > max.length) {
+//         max = str[i] + temp[j]
+//         arr.push(max)
+//       }
+//     }
     
-  }
-  return arr.map((item) => {
-    return item.length
-  }).reduce((pre, cur) => {
-    return Math.max(pre, cur)
-  })
-}
+//   }
+//   return arr.map((item) => {
+//     return item.length
+//   }).reduce((pre, cur) => {
+//     return Math.max(pre, cur)
+//   })
+// }
 
-var lengthOfLongestSubstring1 = function(s) {
-  let targetArr = s.split('')
-  let length = targetArr.length
-  let maxString = s.charAt(0)
-  if(!s.length)
-      return 0
-  for(let i = 0; i < length; i++) {
-      let startChar = targetArr[i]
-      let str = []
-      str.push(startChar)
-      for(let j = i + 1; j < length; j++) {
-          let repeat = true
-          let regChar = `${s.charAt(j)}`
-          for(let z = 0; z < str.length; z++) {
-              repeat = str[z] == regChar ? true : false
-              if(repeat) {
-                  break
-              }
-          }
-          if(repeat)
-              break
-          str.push(regChar)
-          if(str.join('').length > maxString.length) {
-              maxString = str.join('')
-          }
-      }
-  }
-  return maxString.length
-};
+// var lengthOfLongestSubstring1 = function(s) {
+//   let targetArr = s.split('')
+//   let length = targetArr.length
+//   let maxString = s.charAt(0)
+//   if(!s.length)
+//       return 0
+//   for(let i = 0; i < length; i++) {
+//       let startChar = targetArr[i]
+//       let str = []
+//       str.push(startChar)
+//       for(let j = i + 1; j < length; j++) {
+//           let repeat = true
+//           let regChar = `${s.charAt(j)}`
+//           for(let z = 0; z < str.length; z++) {
+//               repeat = str[z] == regChar ? true : false
+//               if(repeat) {
+//                   break
+//               }
+//           }
+//           if(repeat)
+//               break
+//           str.push(regChar)
+//           if(str.join('').length > maxString.length) {
+//               maxString = str.join('')
+//           }
+//       }
+//   }
+//   return maxString.length
+// };
 
 var lengthOfLongestSubstring2 = function(s) {
   var res = 0; // 用于存放当前最长无重复子串的长度
