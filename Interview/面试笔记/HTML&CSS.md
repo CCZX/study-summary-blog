@@ -7,7 +7,7 @@ exp：假设高度已知，请写出**三栏布局**，其中左右两栏宽度�
 ```css
 .left {
     float:left;
-    width:300;
+    width:300px;
 }
 .cneter {
     
@@ -72,26 +72,26 @@ exp：谈谈你对CSS盒模型的认识。
 
 - `dom.style.width/height`，只能取内联样式的宽高
 - `dom.currentStyle.width/heigth`，渲染的宽高，**只有IE支持**
-- `window.getComputedStyle(dom).width/height`：与而相同，只支持**谷歌火狐**
+- `window.getComputedStyle(dom).width/height`：与而相同，只支持**谷歌、火狐**
 - `dom.getBoundingClientRect().w/h`
-- offsetWidth: content+padding+border
-- clientWidth: content + padding
+- `offsetWidth: content+padding+border`
+- `clientWidth: content + padding`
 
 ### 4、根据盒模型解决边距重叠问题：
 
-这里就会引出BFC
+这里就会引出**BFC**（block format context）
 
 ### 5、BFC(块级格式化上下文)：
 
 - 使用场景
 
-  1. 清浮动
+  1. **清浮动**
 
-     浮动元素产生了浮动流，所有产生了浮动流的元素，块级元素都看不见它们但是产生了BFC的元素和文本属性元素(inline)和文本都能看见它们
+     浮动元素产生了**浮动流**，所有产生了浮动流的元素，**块级元素都看不见浮动元素但是BFC元素和文本属性元素(`inline`)和文本都能看见浮动元素。**
 
-  2. 解决margin塌陷、合并
+  2. **解决margin塌陷、合并**
 
-  什么是margin塌陷、合并？当子元素margin-top值小于父元素的margin-top值的时候，子元素的margin-top失效；兄弟元素相邻的margin值不会累加取最大值。
+  什么是margin塌陷、合并？当**子元素margin-top值小于父元素的margin-top值的时候**，子元素的margin-top失效；**兄弟元素相邻的margin值**不会累加取最大值。
 
 - 原理：
 
@@ -176,10 +176,10 @@ div {
 - 选择器权重：`!important`(infinity)>内联（1000）>`#id`(0100)>`.class`(0010)>`tag`(0001)>`*`>继承>默认
 - 选择器**从右到左**匹配
 
-1. **第一等：代表内联样式，如: style=””，权值为1000。**
-2. **第二等：代表ID选择器，如：#content，权值为0100。**
-3. **第三等：代表类，伪类和属性选择器，如.content，权值为0010。**
-4. **第四等：代表类型选择器和伪元素选择器，如div p，权值为0001。**
+1. 第一等：代表**内联样式**，如: style=””，权值为1000。
+2. 第二等：代表**ID**选择器，如：#content，权值为0100。
+3. 第三等：代表**类、伪类、属性**选择器，如.content，权值为0010。
+4. 第四等：代表**类型、伪元素、标签**选择器，如div p，权值为0001。
 5. **通配符、子选择器、相邻选择器等的。如\*、>、+,权值为0000。**
 6. **继承的样式没有权值。**
 
@@ -187,30 +187,30 @@ div {
 
 ## 6、@import、link
 
-- link功能较多，而@import只能加载CSS
-- link同步加载CSS，@import在页面加载完成之后再加载
-- `@import`IE5以上才支持
-- link可以使用JS动态引入
+- link是HTML提供的，功能较多；而@import是CSS语法，只能加载CSS
+- link引入的CSS是**同时加载的**，@import在**页面加载完成之后再加载**
+- `@import`IE5以上才支持，link不存在兼容性问题
+- link可以通过DOM操作，所以link可以使用JS动态引入
 
 ## 7、DOCTYPE
 
-`DOCTYPE`标签是一种标准通用标记语言的文档类型声明，它的目的是要告诉标准通用标记语言解析器，它应该使用什么样的文档类型定义（`DTD`）来解析文档。
+`DOCTYPE`标签是一种标准通用标记语言的**文档类型声明**，它的目的是要**告诉标准通用标记语言解析器，它应该使用什么样的文档类型定义（`DTD`）来解析文档**。
 
 doctype用于声明文档类型和DTD（document type definiton）规范，用于检验文件的合法性
 
-- 严格模式：指浏览器按照W3C标准解析代码
-- 混杂模式：指浏览器用自己的方式解析代码
+- 严格模式：指浏览器按照**W3C标准**解析代码
+- 混杂模式：指浏览器用**自己的标准**解析代码
 
 ## 8、HTML和XHTML区别
 
-- XHTML 元素必须被正确地嵌套。
-- XHTML 元素必须被关闭。
-- 标签名必须用小写字母。
-- XHTML 文档必须拥有根元素。
+- `XHTML` 元素必须被**正确地嵌套**。
+- `XHTML` 元素**必须被关闭**。
+- `XHTML`标签名**必须用小写字母**。
+- `XHTML` 文档**必须拥有根元素**。
 
 ## 9、行内元素
-行内元素不能设置宽高，（但是<img>例外，因为它是置换元素），在设置`position`和`display:flex`变为块级元素。
-行内元素不能上下margin可以设置左右，可以设置所有padding
+行内元素不能设置宽高，（但是<img>例外，因为它是**置换元素**），在设置`position`和`display:flex`变为块级元素。
+**行内元素不能设置上下margin可以设置左右，可以设置所有padding**
 
 
 ## 10、HTML5到底有什么？
@@ -243,7 +243,7 @@ doctype用于声明文档类型和DTD（document type definiton）规范，用�
 - CSS3中伪类和伪元素的语法不同；
 - 可以同时使用多个伪类，而只能同时使用一个伪元素；
 
-
+CSS3规范中要求使用**双冒号(::)表示伪元素，使用单冒号(:)表示伪类**。w3c标准中说到，虽然CSS3标准要求伪元素使用双冒号的写法，但也依然支持单冒号的写法。**为了向后兼容，我们建议你在目前还是使用单冒号的写法**。
 
 ## 13、内联元素、块级元素
 
@@ -259,3 +259,124 @@ doctype用于声明文档类型和DTD（document type definiton）规范，用�
 
 - 内联元素不能设置上下margin
 - 使用position后内联元素变为块级元素
+
+> 替换元素
+
+虽然img是内联元素，但是它任然可以设置宽高，知识因为它是替换元素，其他替换元素还有select，input，textarea，iframe，canvas等。
+
+## 14、flex
+
+在设置`flex`之后position，float属性都将失效。flex是一维的布局思想
+
+### flex容器属性
+
+```css
+/* 以下第一个属性都表示默认的属性值 */
+
+flex-direction: row | row-reverse | cloumn | cloumn-reverse;
+flex-wrap: nowrap | wrap | wrap-reverse;
+flex-flow: <flex-direction> || <flex-wrap> /* flex-direction、flex-wrap的简写 */
+
+/* 主轴对齐方式 */
+justify-content: flex-start | flex-end | center | space-between | space-around;
+/* 交叉轴对齐方式:拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 第一行文字的基线对齐 */
+align-items: stretch | flex-start | flex-end | center | baseline
+/* 多根轴线对齐方式： */
+align-content: stretch | flex-start | flex-end | center | space-between | space-ariund
+```
+
+### flex项目属性
+
+```css
+/* 顺序：数值越小越靠前，默认为0 */
+order: <number>;
+/* 放大比例，默认为0 */
+flex-grow: <number>;
+/* 缩小比例，默认为1,空间不足会缩小，为0不会缩小 */
+flex-shrink: <number>;
+/* 项目自身大小：默认auto，为原来的大小，可设置固定值 50px/50% */
+flex-basis: <length> | auto;
+
+/* flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto
+两个快捷值：auto (1 1 auto) 和 none (0 0 auto) */
+flex:none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+/* 项目自身对齐：继承父元素（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 基线对齐 | 拉伸对齐 */
+align-self: auto | flex-start | flex-end | center | baseline | stretch;
+```
+
+
+
+## 15、transform、transition
+
+transform用于设置元素的选择、移动、缩放、或者倾斜
+
+- translate()
+- rotate()
+- scale()
+- skew()
+
+transition用于设置元素的过度动画，它是以下属性的简写
+
+- transition-property  设置动画的属性
+- transition-duration  动画完成时间
+- transition-timimg-function  动画速度曲线函数
+- transition-delay  动画延迟时间
+
+需要注意的是transition不能设置动画反复执行，但是可以通过JavaScript来修改相关的class来实现。
+
+## 16、@keyframes、animation
+
+@keyframes需要配合animation使用；@keyframes来规定动画，animation来实现动画效果。
+
+```css
+@keyframes go {
+    from {
+        transform: translate(200px)
+    }
+    to {
+        transform: translate(400px)
+    }
+}
+// 还可以使用百分比来表示过程
+.main {
+    animation: go 2s ease 0s 2;
+}
+```
+
+animation是以下属性的简写：
+
+- animation-name 动画名称
+- animation-duration  动画完成时间
+- animation-timing-function  动画速度曲线函数
+- animation-delay  动画延迟时间
+- animation-iteration-count  动画播放次数
+- animation-direction  是否轮流反向播放动画
+
+## 17、媒体查询
+
+媒体查询可以用来设置响应式页面
+
+> css语法
+
+```css
+@media mediaType and | only | not (media feature) {
+    // css code...
+}
+```
+
+> 例子
+
+```css
+@media only screen and  (max-width: 300px) {
+    body {
+        color: red
+    }
+}
+```
+
+> 媒体类型
+
+- all
+- print  用于打印机和打印预览
+- screen  用于电脑屏幕，平板电脑，智能手机等。
+- speech  应用于屏幕阅读器等发声设备

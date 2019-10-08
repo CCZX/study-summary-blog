@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .ie-box {
+      box-sizing: border-box;
+      width: 300px;
+      border: 10px solid red;
+    }
+    .standard-box {
+      box-sizing: content-box;
+      width: 300px;
+      border: 10px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div class="ie-box">IE</div>
+  <div class="standard-box">stand</div>
+  <script>
+    let ieBox = document.querySelector('.ie-box')
+    let standardBox = document.querySelector('.standard-box')
+    getComputedStyle(ieBox).width // 300px
+    getComputedStyle(standardBox).width // 300px
+    ieBox.clientWidth // 280 = content + padding
+    standardBox.clientWidth // 300 = content + padding
+    ieBox.offsetWidth // 300 = content + padding + border
+    standardBox.offsetWidth // 320 = content + padding + border
+  </script>
+</body>
+</html>

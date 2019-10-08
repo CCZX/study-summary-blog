@@ -16,7 +16,7 @@
       return function () {
         newArgs = args.concat(Array.prototype.slice.call(arguments));
         if (newArgs.length < length) {
-          return curry.call(this, fn, newArgs);
+          return curry.apply(this, fn, newArgs);
         } else {
           return fn.apply(this, newArgs);
         }

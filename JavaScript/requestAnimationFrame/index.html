@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    const div = document.querySelector('.box')
+    let init = 0
+    // function animation() {
+    //   requestAnimationFrame(function () {
+    //     div.style.left = `${init++}px`
+    //     if (init < 400) {
+    //       animation()
+    //     }
+    //   })
+    // }
+    // animation()
+    function animation() {
+      div.style.left = `${init++}px`
+      if (init < 400) {
+        window.requestAnimationFrame(animation)
+      }
+    }
+    window.requestAnimationFrame(animation)
+  </script>
+</body>
+</html>

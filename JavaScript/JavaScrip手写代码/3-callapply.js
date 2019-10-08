@@ -39,3 +39,14 @@ function bar(name, age) {
 }
 bar.call2(foo, 'black', '18') // black 18 1
 // bar('black', '18')
+
+Function.prototype.myBind = function (context, ...arg) {
+  const self = this
+  function F() {}
+  F.prototype = this.prototype
+  function res(..._arg) {
+    return self.apply(this instanceof F ? this : context, [...arg, ..._arg])
+  }
+  res.prototype = new F()
+  return res
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = new Proxy({a:1}, {
+      get(target, key, receiver) {
+        // console.log(`getting ${key} --- ${receiver}`)
+        console.log(`getting ${key}`)
+        return Reflect.get(target, key, receiver)
+      },
+      set(target, key, receiver) {
+        // console.log(`setting ${key} --- ${receiver}`)
+        return Reflect.set(target, key, receiver)
+      }
+    })
+    let proObj = Object.create(obj)
+
+    
+    const proxy = new Proxy({}, {
+      get(target, key, receiver) {
+        return receiver
+      }
+    })
+  </script>
+</body>
+</html>

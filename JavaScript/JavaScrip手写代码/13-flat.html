@@ -25,6 +25,28 @@
         return Array.isArray(cur) ? pre.concat(flat3(cur)) : pre.concat(cur)
       }, [])
     }
+
+    // 支持depth
+    const selfFlat = function (depth = 1) {
+      let arr =  Array.prototype.slice.call(this)
+      console.log(arr)
+      if (depth === 0) {
+        return arr
+      }
+      console.log('do')
+      return arr.reduce((mul, cur) => {
+        if (Array.isArray(cur)) {
+          console.log(cur)
+          return [...mul, ...selfFlat.call(cur, depth - 1)]
+        } else {
+          return [...mul, cur]
+        }
+      }, [])
+    }
+    Array.prototype.selfFlat = selfFlat
+    var arr = [1,2,3,[4,[5]]]
+    var res = arr.selfFlat()
+    console.log(res)
   </script>
 </body>
 </html>

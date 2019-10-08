@@ -18,21 +18,21 @@
     // let add = mutil1(1)
     // let sum = add(3)
 
-    // function curry() {
-    //   var args = Array.prototype.slice.call(arguments);
-    //   console.log(args)
-    //   var fn = function () {
-    //     var newArgs = args.concat(Array.prototype.slice.call(arguments));
-    //     // console.log(this)
-    //     return multi.apply(this, newArgs);
-    //   }
-    //   fn.toString = function () {
-    //     return args.reduce(function (a, b) {
-    //       return a * b;
-    //     })
-    //   }
-    //   return fn;
-    // }
+    function curry1() {
+      var args = Array.prototype.slice.call(arguments);
+      console.log(args)
+      var fn = function () {
+        var newArgs = args.concat(Array.prototype.slice.call(arguments));
+        // console.log(this)
+        return multi.apply(this, newArgs);
+      }
+      fn.toString = function () {
+        return args.reduce(function (a, b) {
+          return a * b;
+        })
+      }
+      return fn;
+    }
 
     // function multiFn(a, b, c) {
     //   return a * b * c;

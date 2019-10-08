@@ -35,3 +35,4 @@ function partition(arr: number[], left: number, right: number):number {
 let arr:Array<number> = [3,4,1,5,2]
 quick(arr, 0, 4)
 
+export default quick

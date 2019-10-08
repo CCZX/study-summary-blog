@@ -413,7 +413,7 @@ for(let item of obj) {
 - NodeList对象
 - ES6 的数组、对象、Set、Map 都部署了以下三个方法: entries() / keys() / values()，调用后都返回遍历器对象。
 
-## 8、requestAnimationFrame 和 setTimeout/setInterval 
+## 8、`requestAnimationFrame` 和 `setTimeout/setInterval `
 
 在`requestAnimationFrame`之前主要使用`setInterval`来写动画。
 
