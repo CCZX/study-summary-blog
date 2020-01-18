@@ -3,7 +3,7 @@ function mergeSort(arr:Array<number>):Array<number> {
   if (list.length < 1) {
     return list
   }
-  let mid:number = list.length / 2
+  let mid:number = Math.floor(list.length / 2)
   let left:Array<number> = list.slice(0, mid)
   let right:Array<number> = list.slice(mid, list.length)
   merge(mergeSort(left), mergeSort(right))

@@ -49,16 +49,26 @@ v-for、v-if、v-show、v-html、v-bind、v-model等；
 全局：
 
 ```vue
-Vue.directive('name', {function})
+// 注册一个全局自定义指令 `v-focus`
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
 ```
 
 局部：
 
 ```vue
 directives: {
- name: {
-  function
- }
+  focus: {
+    // 指令的定义
+    inserted: function (el, binding, vnode, oldVnode) {
+      el.focus()
+    }
+  }
 }
 ```
 

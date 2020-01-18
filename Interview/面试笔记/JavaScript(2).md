@@ -602,8 +602,8 @@ export命令用于向外界暴露接口，import命令导入其他模块
 
 ## 9、ES6模块和CommonJS模块的差异？
 
-1. CommonJS模块是对值的拷贝，而ES6是对值的引用
-2. CommonJS可以实现按需加载，ES6不行,即ES6不能在判断条件中加载
+1. `CommonJS`模块是对值的**拷贝**，而`ES6`是对值的**引用**。
+2. `CommonJS`可以实现**按需加载**，`ES6`不行,即`ES6`不能在判断条件中加载
 
 ```javascript
 if(XXX) { // 不行
@@ -611,10 +611,6 @@ if(XXX) { // 不行
 }
 ```
 
-
-
-
-
-3. CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
-4. CommonJS 加载的是整个模块，即将所有的接口全部加载进来，ES6 可以单独加载其中的某个接口（方法），
-5. CommonJS this 指向当前模块，ES6 this 指向undefined
+3. `CommonJS` 模块是**运行时加载**，`ES6 `模块是**编译时输出接口**。
+4. `CommonJS` 加载的是**整个模块**，即将所有的接口全部加载进来，`ES6 `**可以单独**加载其中的某个接口（方法）
+5. `CommonJS`的` this` 指向当前模块，`ES6 `的`this` 指向`undefined` 。

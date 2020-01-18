@@ -16,8 +16,8 @@ function PriorityQueue() {
         added = true
         break
       }      
-      !added && items.push(queueElement)
     }
+    !added && items.push(queueElement)
   }
   this.print = function () {
     for (let i = 0; i < items.length; i++) {

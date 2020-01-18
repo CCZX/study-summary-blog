@@ -209,21 +209,23 @@ doctype用于声明文档类型和DTD（document type definiton）规范，用�
 - `XHTML` 文档**必须拥有根元素**。
 
 ## 9、行内元素
-行内元素不能设置宽高，（但是<img>例外，因为它是**置换元素**），在设置`position`和`display:flex`变为块级元素。
+行内元素不能设置宽高，（但是<img>例外，因为它是**置换元素**），在设置`position:absolute`和`float:left`变为块级元素**`display:block`**。
+
 **行内元素不能设置上下margin可以设置左右，可以设置所有padding**
 
 
 ## 10、HTML5到底有什么？
 
-- 语义化标签
-- 增加表单类型，表单元素，表单属性
+- 语义化标签：header、article、main、nav、footer
+- 增加表单类型（email\url\number\range\search\color\date），表单元素(datalist\output)，表单属性(max\min\step\multiple)
 - 音频视频
 - Canvas
 - SVG
 - 地理位置：window.navigator.geolocation
-- 拖放API：drag、drop
-- Web Worker
-- Web Storage
+- 拖放API：
+- 、drag、drop
+- Web Worker，多线程
+- Web Storage，本地存储：local Storage、session Storage
 - Web Socket
 
 ## 11、CSS3
@@ -258,7 +260,7 @@ CSS3规范中要求使用**双冒号(::)表示伪元素，使用单冒号(:)表�
 `div,p`
 
 - 内联元素不能设置上下margin
-- 使用position后内联元素变为块级元素
+- 使用position、float后内联元素变为块级元素
 
 > 替换元素
 
